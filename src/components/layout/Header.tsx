@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Search, ShoppingCart, User, Sparkles } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navLinks = [
     { name: "Explore", href: "/explore" },
@@ -51,11 +52,19 @@ const Header = () => {
                 2
               </span>
             </Button>
-            <Button variant="outline" className="border-border hover:border-primary/50 hover:bg-primary/5">
+            <Button 
+              variant="outline" 
+              className="border-border hover:border-primary/50 hover:bg-primary/5"
+              onClick={() => navigate("/auth/login")}
+            >
               <User className="w-4 h-4 mr-2" />
               Sign In
             </Button>
-            <Button variant="hero" className="glow-sm hover:glow transition-all duration-300">
+            <Button 
+              variant="hero" 
+              className="glow-sm hover:glow transition-all duration-300"
+              onClick={() => navigate("/auth/register")}
+            >
               Get Started
             </Button>
           </div>
@@ -88,10 +97,18 @@ const Header = () => {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 mt-4 px-4">
-                <Button variant="outline" className="w-full border-border">
+                <Button 
+                  variant="outline" 
+                  className="w-full border-border"
+                  onClick={() => { navigate("/auth/login"); setIsMenuOpen(false); }}
+                >
                   Sign In
                 </Button>
-                <Button variant="hero" className="w-full glow-sm">
+                <Button 
+                  variant="hero" 
+                  className="w-full glow-sm"
+                  onClick={() => { navigate("/auth/register"); setIsMenuOpen(false); }}
+                >
                   Get Started
                 </Button>
               </div>
