@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Download, Star, ArrowRight } from "lucide-react";
+import { Heart, Download, Star, ArrowRight, ShoppingCart } from "lucide-react";
 
 const FeaturedProducts = () => {
   const products = [
@@ -81,19 +81,23 @@ const FeaturedProducts = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section className="py-24 lg:py-32 bg-card/50 relative">
+      {/* Background Effects */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[200px]" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[150px]" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <span className="text-primary font-medium mb-4 block">Featured</span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+            <span className="text-primary font-semibold mb-4 block text-sm uppercase tracking-wider">Featured</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               Trending Products
             </h2>
           </div>
-          <Button variant="outline" className="self-start md:self-auto">
+          <Button variant="outline" className="self-start md:self-auto border-border hover:border-primary/50 hover:bg-primary/5 group">
             View All Products
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
 
@@ -109,61 +113,59 @@ const FeaturedProducts = () => {
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                 
                 {/* Actions */}
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button className="w-10 h-10 rounded-xl bg-card/90 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors">
-                    <Heart className="w-5 h-5 text-foreground" />
+                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <button className="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-colors">
+                    <Heart className="w-5 h-5" />
                   </button>
                 </div>
 
                 {/* Badges */}
                 <div className="absolute top-4 left-4 flex gap-2">
                   {product.price === 0 && (
-                    <Badge className="bg-success text-success-foreground">Free</Badge>
+                    <Badge className="bg-success text-success-foreground border-0">Free</Badge>
                   )}
                   {product.featured && (
-                    <Badge className="bg-gradient-primary text-primary-foreground">Featured</Badge>
+                    <Badge className="bg-gradient-primary text-primary-foreground border-0 animate-pulse-glow">Featured</Badge>
                   )}
                   {product.originalPrice && (
-                    <Badge variant="secondary" className="bg-accent text-accent-foreground">Sale</Badge>
+                    <Badge className="bg-accent text-accent-foreground border-0">Sale</Badge>
                   )}
                 </div>
 
                 {/* Quick Add */}
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button variant="glass" className="w-full bg-card/90 text-foreground">
-                    <Download className="w-4 h-4 mr-2" />
+                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
+                  <Button variant="glass" className="w-full glass hover:bg-primary/20">
+                    <ShoppingCart className="w-4 h-4 mr-2" />
                     {product.price === 0 ? "Download Free" : "Add to Cart"}
                   </Button>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="secondary" className="text-xs">
-                    {product.category}
-                  </Badge>
-                </div>
+              <div className="p-6">
+                <Badge variant="secondary" className="text-xs mb-3 bg-muted text-muted-foreground">
+                  {product.category}
+                </Badge>
                 
-                <h3 className="font-display font-semibold text-lg text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                <h3 className="font-display font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-1">
                   {product.title}
                 </h3>
                 
-                <p className="text-muted-foreground text-sm mb-3">
+                <p className="text-muted-foreground text-sm mb-4">
                   by {product.author}
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5">
                     <Star className="w-4 h-4 fill-warning text-warning" />
-                    <span className="font-medium text-sm">{product.rating}</span>
+                    <span className="font-medium text-sm text-foreground">{product.rating}</span>
                     <span className="text-muted-foreground text-sm">({product.reviews})</span>
                   </div>
                   
@@ -173,7 +175,7 @@ const FeaturedProducts = () => {
                         ${product.originalPrice}
                       </span>
                     )}
-                    <span className="font-display font-bold text-lg text-foreground">
+                    <span className="font-display font-bold text-xl text-foreground">
                       {product.price === 0 ? "Free" : `$${product.price}`}
                     </span>
                   </div>
