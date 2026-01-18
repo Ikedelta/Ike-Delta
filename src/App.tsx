@@ -15,6 +15,14 @@ import Blog from "./pages/Blog";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import DashboardLayout from "./components/dashboard/DashboardLayout";
+import DashboardOverview from "./pages/dashboard/DashboardOverview";
+import MyProducts from "./pages/dashboard/MyProducts";
+import Downloads from "./pages/dashboard/Downloads";
+import Favorites from "./pages/dashboard/Favorites";
+import Notifications from "./pages/dashboard/Notifications";
+import Settings from "./pages/dashboard/Settings";
+import CreateProduct from "./pages/dashboard/CreateProduct";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +44,15 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<DashboardOverview />} />
+              <Route path="products" element={<MyProducts />} />
+              <Route path="products/new" element={<CreateProduct />} />
+              <Route path="downloads" element={<Downloads />} />
+              <Route path="favorites" element={<Favorites />} />
+              <Route path="notifications" element={<Notifications />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

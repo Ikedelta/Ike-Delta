@@ -14,7 +14,302 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+          product_count: number | null
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+          product_count?: number | null
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+          product_count?: number | null
+          slug?: string
+        }
+        Relationships: []
+      }
+      favorites: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean | null
+          link: string | null
+          message: string
+          title: string
+          type: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          link?: string | null
+          message: string
+          title: string
+          type?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean | null
+          link?: string | null
+          message?: string
+          title?: string
+          type?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          description: string | null
+          download_count: number | null
+          file_size: string | null
+          file_type: string | null
+          file_url: string | null
+          id: string
+          is_featured: boolean | null
+          is_free: boolean | null
+          original_price: number | null
+          preview_images: string[] | null
+          price: number | null
+          rating: number | null
+          review_count: number | null
+          seller_id: string
+          short_description: string | null
+          slug: string
+          status: string | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          download_count?: number | null
+          file_size?: string | null
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          is_featured?: boolean | null
+          is_free?: boolean | null
+          original_price?: number | null
+          preview_images?: string[] | null
+          price?: number | null
+          rating?: number | null
+          review_count?: number | null
+          seller_id: string
+          short_description?: string | null
+          slug: string
+          status?: string | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          download_count?: number | null
+          file_size?: string | null
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          is_featured?: boolean | null
+          is_free?: boolean | null
+          original_price?: number | null
+          preview_images?: string[] | null
+          price?: number | null
+          rating?: number | null
+          review_count?: number | null
+          seller_id?: string
+          short_description?: string | null
+          slug?: string
+          status?: string | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          location: string | null
+          updated_at: string
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          location?: string | null
+          updated_at?: string
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          location?: string | null
+          updated_at?: string
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      purchases: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string | null
+          downloaded_at: string | null
+          id: string
+          payment_method: string | null
+          payment_reference: string | null
+          product_id: string
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          currency?: string | null
+          downloaded_at?: string | null
+          id?: string
+          payment_method?: string | null
+          payment_reference?: string | null
+          product_id: string
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string | null
+          downloaded_at?: string | null
+          id?: string
+          payment_method?: string | null
+          payment_reference?: string | null
+          product_id?: string
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchases_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reviews: {
+        Row: {
+          comment: string | null
+          created_at: string
+          id: string
+          product_id: string
+          rating: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          product_id: string
+          rating: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string
+          rating?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
