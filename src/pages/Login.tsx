@@ -1,22 +1,76 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sparkles, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Sparkles, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
+import { z } from "zod";
+
+const loginSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
 
 const Login = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const { signIn, user, loading: authLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (user && !authLoading) {
+      navigate("/");
+    }
+  }, [user, authLoading, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    const result = loginSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: { email?: string; password?: string } = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0] === "email") fieldErrors.email = err.message;
+        if (err.path[0] === "password") fieldErrors.password = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setLoading(true);
+    const { error } = await signIn(formData.email, formData.password);
+    setLoading(false);
+
+    if (error) {
+      toast({
+        title: "Login Failed",
+        description: error.message === "Invalid login credentials" 
+          ? "Invalid email or password. Please try again." 
+          : error.message,
+        variant: "destructive",
+      });
+      return;
+    }
+
     toast({
-      title: "Login Successful!",
-      description: "Welcome back to CreativeHub.",
+      title: "Welcome Back!",
+      description: "You've successfully logged in.",
     });
+    navigate("/");
   };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-mesh flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-mesh flex items-center justify-center p-4">
@@ -50,10 +104,11 @@ const Login = () => {
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="pl-12 h-12 bg-muted border-border"
-                  required
+                  className={`pl-12 h-12 bg-muted border-border ${errors.email ? 'border-destructive' : ''}`}
+                  disabled={loading}
                 />
               </div>
+              {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
             </div>
 
             <div>
@@ -65,8 +120,8 @@ const Login = () => {
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="pl-12 pr-12 h-12 bg-muted border-border"
-                  required
+                  className={`pl-12 pr-12 h-12 bg-muted border-border ${errors.password ? 'border-destructive' : ''}`}
+                  disabled={loading}
                 />
                 <button
                   type="button"
@@ -76,6 +131,7 @@ const Login = () => {
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
+              {errors.password && <p className="text-destructive text-sm mt-1">{errors.password}</p>}
             </div>
 
             <div className="flex items-center justify-between text-sm">
@@ -86,8 +142,8 @@ const Login = () => {
               <a href="#" className="text-primary hover:underline">Forgot password?</a>
             </div>
 
-            <Button type="submit" variant="hero" className="w-full h-12 glow-sm">
-              Sign In
+            <Button type="submit" variant="hero" className="w-full h-12 glow-sm" disabled={loading}>
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Sign In"}
             </Button>
           </form>
 

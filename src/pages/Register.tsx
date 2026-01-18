@@ -1,22 +1,94 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sparkles, Mail, Lock, Eye, EyeOff, User } from "lucide-react";
+import { Sparkles, Mail, Lock, Eye, EyeOff, User, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
+import { z } from "zod";
+
+const registerSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
 
 const Register = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const { signUp, user, loading: authLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; email?: string; password?: string }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (user && !authLoading) {
+      navigate("/");
+    }
+  }, [user, authLoading, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    if (!agreedToTerms) {
+      toast({
+        title: "Terms Required",
+        description: "Please agree to the Terms of Service and Privacy Policy.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const result = registerSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: { name?: string; email?: string; password?: string } = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0] === "name") fieldErrors.name = err.message;
+        if (err.path[0] === "email") fieldErrors.email = err.message;
+        if (err.path[0] === "password") fieldErrors.password = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setLoading(true);
+    const { error } = await signUp(formData.email, formData.password);
+    setLoading(false);
+
+    if (error) {
+      if (error.message.includes("already registered")) {
+        toast({
+          title: "Account Exists",
+          description: "This email is already registered. Please sign in instead.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Registration Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+      }
+      return;
+    }
+
     toast({
       title: "Account Created!",
       description: "Welcome to CreativeHub. Let's get started!",
     });
+    navigate("/");
   };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-mesh flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-mesh flex items-center justify-center p-4">
@@ -50,10 +122,11 @@ const Register = () => {
                   placeholder="John Doe"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="pl-12 h-12 bg-muted border-border"
-                  required
+                  className={`pl-12 h-12 bg-muted border-border ${errors.name ? 'border-destructive' : ''}`}
+                  disabled={loading}
                 />
               </div>
+              {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
             </div>
 
             <div>
@@ -65,10 +138,11 @@ const Register = () => {
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="pl-12 h-12 bg-muted border-border"
-                  required
+                  className={`pl-12 h-12 bg-muted border-border ${errors.email ? 'border-destructive' : ''}`}
+                  disabled={loading}
                 />
               </div>
+              {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
             </div>
 
             <div>
@@ -80,8 +154,8 @@ const Register = () => {
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="pl-12 pr-12 h-12 bg-muted border-border"
-                  required
+                  className={`pl-12 pr-12 h-12 bg-muted border-border ${errors.password ? 'border-destructive' : ''}`}
+                  disabled={loading}
                 />
                 <button
                   type="button"
@@ -91,10 +165,16 @@ const Register = () => {
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
+              {errors.password && <p className="text-destructive text-sm mt-1">{errors.password}</p>}
             </div>
 
             <div className="flex items-start gap-2">
-              <input type="checkbox" className="rounded border-border mt-1" required />
+              <input 
+                type="checkbox" 
+                className="rounded border-border mt-1" 
+                checked={agreedToTerms}
+                onChange={(e) => setAgreedToTerms(e.target.checked)}
+              />
               <span className="text-muted-foreground text-sm">
                 I agree to the{" "}
                 <a href="#" className="text-primary hover:underline">Terms of Service</a>{" "}
@@ -103,8 +183,8 @@ const Register = () => {
               </span>
             </div>
 
-            <Button type="submit" variant="hero" className="w-full h-12 glow-sm">
-              Create Account
+            <Button type="submit" variant="hero" className="w-full h-12 glow-sm" disabled={loading}>
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Create Account"}
             </Button>
           </form>
 
