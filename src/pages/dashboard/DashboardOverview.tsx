@@ -114,7 +114,7 @@ const DashboardOverview = () => {
       title: "Favorites", 
       value: stats.totalFavorites, 
       icon: Heart, 
-      color: "from-pink-500 to-pink-500/50",
+      color: "from-orange-500 to-red-500/60",
       change: "+24%"
     },
     { 
