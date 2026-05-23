@@ -81,7 +81,7 @@ const AdminAnalytics = () => {
     { name: "Dashboard UI", downloads: 76, revenue: 2280 },
   ];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
+  const COLORS = ["#f97316", "#fb923c", "#f59e0b", "#ef4444", "#fbbf24"];
 
   useEffect(() => {
     fetchAnalytics();
