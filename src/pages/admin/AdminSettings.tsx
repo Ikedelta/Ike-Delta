@@ -71,7 +71,7 @@ const AdminSettings = () => {
         const { error } = await supabase.from("admin_settings").upsert(
           {
             key,
-            value: value as unknown as Record<string, unknown>,
+            value: value as unknown as never,
           },
           { onConflict: "key" }
         );
