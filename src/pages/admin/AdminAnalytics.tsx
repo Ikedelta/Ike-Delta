@@ -81,7 +81,7 @@ const AdminAnalytics = () => {
     { name: "Dashboard UI", downloads: 76, revenue: 2280 },
   ];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
+  const COLORS = ["#f97316", "#fb923c", "#f59e0b", "#ef4444", "#fbbf24"];
 
   useEffect(() => {
     fetchAnalytics();
@@ -119,31 +119,31 @@ const AdminAnalytics = () => {
       value: data.totalUsers,
       icon: Users,
       growth: data.userGrowth,
-      color: "text-blue-500",
-      bgColor: "bg-blue-500/10",
+      color: "text-orange-400",
+      bgColor: "bg-orange-500/10",
     },
     {
       title: "Total Products",
       value: data.totalProducts,
       icon: Package,
       growth: 5.2,
-      color: "text-green-500",
-      bgColor: "bg-green-500/10",
+      color: "text-amber-400",
+      bgColor: "bg-amber-500/10",
     },
     {
       title: "Total Orders",
       value: data.totalOrders,
       icon: ShoppingCart,
       growth: 15.8,
-      color: "text-purple-500",
-      bgColor: "bg-purple-500/10",
+      color: "text-red-400",
+      bgColor: "bg-red-500/10",
     },
     {
       title: "Total Revenue",
       value: `₵${data.totalRevenue.toLocaleString()}`,
       icon: DollarSign,
       growth: data.revenueGrowth,
-      color: "text-yellow-500",
+      color: "text-yellow-400",
       bgColor: "bg-yellow-500/10",
     },
   ];
@@ -256,7 +256,7 @@ const AdminAnalytics = () => {
                       `${name} ${(percent * 100).toFixed(0)}%`
                     }
                     outerRadius={100}
-                    fill="#8884d8"
+                    fill="#f97316"
                     dataKey="value"
                   >
                     {categoryData.map((entry, index) => (
@@ -291,14 +291,14 @@ const AdminAnalytics = () => {
                   <Line
                     type="monotone"
                     dataKey="signups"
-                    stroke="#8884d8"
+                    stroke="#f97316"
                     strokeWidth={2}
                     name="Signups"
                   />
                   <Line
                     type="monotone"
                     dataKey="purchases"
-                    stroke="#82ca9d"
+                    stroke="#ef4444"
                     strokeWidth={2}
                     name="Purchases"
                   />
