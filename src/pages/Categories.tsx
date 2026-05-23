@@ -4,17 +4,17 @@ import { Palette, Image, Type, Layout, Box, Layers, FileCode, Video, Wand2, Came
 
 const Categories = () => {
   const categories = [
-    { icon: Palette, name: "UI Kits", count: "2,340", description: "Complete design systems and UI components", gradient: "from-violet-500 to-purple-600" },
-    { icon: Image, name: "Graphics", count: "5,120", description: "Illustrations, backgrounds, and visual assets", gradient: "from-pink-500 to-rose-600" },
-    { icon: Type, name: "Fonts", count: "890", description: "Premium typography and typefaces", gradient: "from-amber-500 to-orange-600" },
-    { icon: Layout, name: "Templates", count: "1,560", description: "Website and app templates", gradient: "from-emerald-500 to-teal-600" },
-    { icon: Box, name: "3D Assets", count: "720", description: "3D models, icons, and renders", gradient: "from-blue-500 to-cyan-600" },
-    { icon: Layers, name: "Mockups", count: "1,890", description: "Device and product mockups", gradient: "from-indigo-500 to-violet-600" },
-    { icon: FileCode, name: "Code", count: "340", description: "Code snippets and components", gradient: "from-slate-400 to-zinc-500" },
-    { icon: Video, name: "Courses", count: "156", description: "Video tutorials and masterclasses", gradient: "from-red-500 to-pink-600" },
-    { icon: Wand2, name: "Effects", count: "430", description: "Photo effects and actions", gradient: "from-purple-500 to-fuchsia-600" },
-    { icon: Camera, name: "Photos", count: "8,200", description: "Stock photos and imagery", gradient: "from-sky-500 to-blue-600" },
-    { icon: Music, name: "Audio", count: "560", description: "Sound effects and music", gradient: "from-green-500 to-emerald-600" },
+    { icon: Palette, name: "UI Kits", count: "2,340", description: "Complete design systems and UI components", gradient: "from-orange-500 to-red-600" },
+    { icon: Image, name: "Graphics", count: "5,120", description: "Illustrations, backgrounds, and visual assets", gradient: "from-amber-500 to-orange-600" },
+    { icon: Type, name: "Fonts", count: "890", description: "Premium typography and typefaces", gradient: "from-yellow-500 to-orange-600" },
+    { icon: Layout, name: "Templates", count: "1,560", description: "Website and app templates", gradient: "from-orange-400 to-amber-600" },
+    { icon: Box, name: "3D Assets", count: "720", description: "3D models, icons, and renders", gradient: "from-red-500 to-orange-600" },
+    { icon: Layers, name: "Mockups", count: "1,890", description: "Device and product mockups", gradient: "from-orange-600 to-rose-600" },
+    { icon: FileCode, name: "Code", count: "340", description: "Code snippets and components", gradient: "from-stone-500 to-orange-600" },
+    { icon: Video, name: "Courses", count: "156", description: "Video tutorials and masterclasses", gradient: "from-red-500 to-orange-500" },
+    { icon: Wand2, name: "Effects", count: "430", description: "Photo effects and actions", gradient: "from-orange-500 to-amber-400" },
+    { icon: Camera, name: "Photos", count: "8,200", description: "Stock photos and imagery", gradient: "from-amber-600 to-orange-500" },
+    { icon: Music, name: "Audio", count: "560", description: "Sound effects and music", gradient: "from-orange-500 to-yellow-500" },
     { icon: FileText, name: "Documents", count: "890", description: "Presentations and documents", gradient: "from-orange-500 to-red-600" },
   ];
 
