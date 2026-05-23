@@ -256,7 +256,7 @@ const AdminAnalytics = () => {
                       `${name} ${(percent * 100).toFixed(0)}%`
                     }
                     outerRadius={100}
-                    fill="#8884d8"
+                    fill="#f97316"
                     dataKey="value"
                   >
                     {categoryData.map((entry, index) => (
