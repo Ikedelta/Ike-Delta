@@ -84,14 +84,14 @@
 @layer utilities {
   /* Gradient Text */
   .text-gradient {
-    background: linear-gradient(135deg, hsl(263 90% 65%) 0%, hsl(340 85% 60%) 50%, hsl(263 90% 75%) 100%);
+    background: linear-gradient(135deg, hsl(22 95% 58%) 0%, hsl(14 90% 55%) 50%, hsl(38 100% 60%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   
   .text-gradient-accent {
-    background: linear-gradient(135deg, hsl(340 85% 60%) 0%, hsl(20 95% 60%) 100%);
+    background: linear-gradient(135deg, hsl(14 90% 55%) 0%, hsl(38 100% 60%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -99,49 +99,49 @@
   
   /* Background Gradients */
   .bg-gradient-primary {
-    background: linear-gradient(135deg, hsl(263 90% 65%) 0%, hsl(280 85% 55%) 100%);
+    background: linear-gradient(135deg, hsl(22 95% 58%) 0%, hsl(14 90% 50%) 100%);
   }
   
   .bg-gradient-accent {
-    background: linear-gradient(135deg, hsl(340 85% 60%) 0%, hsl(20 95% 60%) 100%);
+    background: linear-gradient(135deg, hsl(14 90% 55%) 0%, hsl(38 100% 60%) 100%);
   }
   
   .bg-gradient-hero {
-    background: linear-gradient(135deg, hsl(240 10% 4%) 0%, hsl(263 40% 12%) 50%, hsl(240 10% 4%) 100%);
+    background: linear-gradient(135deg, hsl(24 15% 5%) 0%, hsl(20 40% 12%) 50%, hsl(24 15% 5%) 100%);
   }
   
   .bg-mesh {
     background: 
-      radial-gradient(ellipse at 20% 30%, hsl(263 90% 65% / 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 70%, hsl(340 85% 60% / 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, hsl(263 90% 65% / 0.05) 0%, transparent 70%),
-      hsl(240 10% 4%);
+      radial-gradient(ellipse at 20% 30%, hsl(22 95% 58% / 0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, hsl(14 90% 55% / 0.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, hsl(38 100% 60% / 0.06) 0%, transparent 70%),
+      hsl(24 15% 5%);
   }
   
   /* Glassmorphism */
   .glass {
-    background: hsl(240 10% 8% / 0.6);
+    background: hsl(24 12% 9% / 0.6);
     backdrop-filter: blur(12px);
     border: 1px solid hsl(0 0% 100% / 0.08);
   }
   
   .glass-strong {
-    background: hsl(240 10% 6% / 0.85);
+    background: hsl(24 12% 7% / 0.85);
     backdrop-filter: blur(20px);
     border: 1px solid hsl(0 0% 100% / 0.1);
   }
   
   /* Glow Effects */
   .glow {
-    box-shadow: 0 0 40px hsl(263 90% 65% / 0.4);
+    box-shadow: 0 0 40px hsl(22 95% 58% / 0.45);
   }
   
   .glow-sm {
-    box-shadow: 0 0 20px hsl(263 90% 65% / 0.3);
+    box-shadow: 0 0 20px hsl(22 95% 58% / 0.35);
   }
   
   .glow-accent {
-    box-shadow: 0 0 40px hsl(340 85% 60% / 0.4);
+    box-shadow: 0 0 40px hsl(14 90% 55% / 0.45);
   }
   
   /* Cards */
@@ -153,8 +153,8 @@
     @apply -translate-y-2;
     box-shadow: 
       0 25px 50px -12px hsl(0 0% 0% / 0.5),
-      0 0 40px hsl(263 90% 65% / 0.15);
-    border-color: hsl(263 90% 65% / 0.3);
+      0 0 40px hsl(22 95% 58% / 0.2);
+    border-color: hsl(22 95% 58% / 0.4);
   }
   
   /* Link Hover */
