@@ -291,14 +291,14 @@ const AdminAnalytics = () => {
                   <Line
                     type="monotone"
                     dataKey="signups"
-                    stroke="#8884d8"
+                    stroke="#f97316"
                     strokeWidth={2}
                     name="Signups"
                   />
                   <Line
                     type="monotone"
                     dataKey="purchases"
-                    stroke="#82ca9d"
+                    stroke="#ef4444"
                     strokeWidth={2}
                     name="Purchases"
                   />
