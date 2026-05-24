@@ -319,8 +319,13 @@ const AdminSms = () => {
                       variant="ghost"
                       size="icon"
                       onClick={() => handleDeleteTemplate(template.id)}
+                      disabled={deletingTemplateId === template.id}
                     >
-                      <Trash2 className="h-4 w-4 text-destructive" />
+                      {deletingTemplateId === template.id ? (
+                        <Loader2 className="h-4 w-4 animate-spin text-destructive" />
+                      ) : (
+                        <Trash2 className="h-4 w-4 text-destructive" />
+                      )}
                     </Button>
                   </div>
                   <p className="text-sm text-muted-foreground line-clamp-3">
@@ -442,12 +447,15 @@ const AdminSms = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setSendDialogOpen(false)}>
+            <Button variant="outline" onClick={() => setSendDialogOpen(false)} disabled={sending}>
               Cancel
             </Button>
-            <Button onClick={handleSendSms}>
-              <Send className="h-4 w-4 mr-2" />
-              Send
+            <Button onClick={handleSendSms} disabled={sending}>
+              {sending ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Sending...</>
+              ) : (
+                <><Send className="h-4 w-4 mr-2" />Send</>
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -488,10 +496,15 @@ const AdminSms = () => {
             <Button
               variant="outline"
               onClick={() => setTemplateDialogOpen(false)}
+              disabled={savingTemplate}
             >
               Cancel
             </Button>
-            <Button onClick={handleSaveTemplate}>Save Template</Button>
+            <Button onClick={handleSaveTemplate} disabled={savingTemplate}>
+              {savingTemplate ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Saving...</>
+              ) : "Save Template"}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
