@@ -24,7 +24,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import { Plus, Pencil, Trash2, Eye, EyeOff, Loader2 } from "lucide-react";
 
 interface BlogPost {
   id: string;
@@ -43,6 +43,9 @@ const AdminBlog = () => {
   const { user } = useAuth();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState<"draft" | "published" | null>(null);
+  const [togglingId, setTogglingId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [formData, setFormData] = useState({
@@ -114,6 +117,7 @@ const AdminBlog = () => {
       return;
     }
 
+    setSaving(status);
     try {
       const postData = {
         title: formData.title,
@@ -158,12 +162,14 @@ const AdminBlog = () => {
         description: "Failed to save blog post.",
         variant: "destructive",
       });
+    } finally {
+      setSaving(null);
     }
   };
 
   const handleToggleStatus = async (post: BlogPost) => {
     const newStatus = post.status === "published" ? "draft" : "published";
-
+    setTogglingId(post.id);
     try {
       const { error } = await supabase
         .from("blog_posts")
@@ -189,12 +195,14 @@ const AdminBlog = () => {
         description: "Failed to update post status.",
         variant: "destructive",
       });
+    } finally {
+      setTogglingId(null);
     }
   };
 
   const handleDelete = async (postId: string) => {
     if (!confirm("Are you sure you want to delete this post?")) return;
-
+    setDeletingId(postId);
     try {
       const { error } = await supabase.from("blog_posts").delete().eq("id", postId);
 
@@ -213,6 +221,8 @@ const AdminBlog = () => {
         description: "Failed to delete post.",
         variant: "destructive",
       });
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -319,13 +329,16 @@ const AdminBlog = () => {
                           variant="ghost"
                           size="icon"
                           onClick={() => handleToggleStatus(post)}
+                          disabled={togglingId === post.id}
                           title={
                             post.status === "published"
                               ? "Unpublish"
                               : "Publish"
                           }
                         >
-                          {post.status === "published" ? (
+                          {togglingId === post.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : post.status === "published" ? (
                             <EyeOff className="h-4 w-4" />
                           ) : (
                             <Eye className="h-4 w-4" />
@@ -342,8 +355,13 @@ const AdminBlog = () => {
                           variant="ghost"
                           size="icon"
                           onClick={() => handleDelete(post.id)}
+                          disabled={deletingId === post.id}
                         >
-                          <Trash2 className="h-4 w-4 text-destructive" />
+                          {deletingId === post.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin text-destructive" />
+                          ) : (
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          )}
                         </Button>
                       </div>
                     </TableCell>
@@ -427,14 +445,18 @@ const AdminBlog = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+            <Button variant="outline" onClick={() => setDialogOpen(false)} disabled={saving !== null}>
               Cancel
             </Button>
-            <Button variant="secondary" onClick={() => handleSubmit("draft")}>
-              Save as Draft
+            <Button variant="secondary" onClick={() => handleSubmit("draft")} disabled={saving !== null}>
+              {saving === "draft" ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Saving...</>
+              ) : "Save as Draft"}
             </Button>
-            <Button onClick={() => handleSubmit("published")}>
-              {editingPost ? "Update & Publish" : "Publish"}
+            <Button onClick={() => handleSubmit("published")} disabled={saving !== null}>
+              {saving === "published" ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Publishing...</>
+              ) : editingPost ? "Update & Publish" : "Publish"}
             </Button>
           </DialogFooter>
         </DialogContent>
