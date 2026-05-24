@@ -41,6 +41,7 @@ import {
   Ban,
   Mail,
   MessageSquare,
+  Loader2,
 } from "lucide-react";
 
 interface User {
@@ -63,6 +64,7 @@ const AdminUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [userRoles, setUserRoles] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(true);
+  const [assigning, setAssigning] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [roleDialogOpen, setRoleDialogOpen] = useState(false);
@@ -109,7 +111,7 @@ const AdminUsers = () => {
 
   const handleAssignRole = async () => {
     if (!selectedUser || !newRole) return;
-
+    setAssigning(true);
     try {
       const roleValue = newRole as "admin" | "moderator" | "user";
       const { error } = await supabase.from("user_roles").upsert({
@@ -135,6 +137,8 @@ const AdminUsers = () => {
         description: "Failed to assign role.",
         variant: "destructive",
       });
+    } finally {
+      setAssigning(false);
     }
   };
 
@@ -330,11 +334,13 @@ const AdminUsers = () => {
             </Select>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setRoleDialogOpen(false)}>
+            <Button variant="outline" onClick={() => setRoleDialogOpen(false)} disabled={assigning}>
               Cancel
             </Button>
-            <Button onClick={handleAssignRole} disabled={!newRole}>
-              Assign Role
+            <Button onClick={handleAssignRole} disabled={!newRole || assigning}>
+              {assigning ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Assigning...</>
+              ) : "Assign Role"}
             </Button>
           </DialogFooter>
         </DialogContent>
