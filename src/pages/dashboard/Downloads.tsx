@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Download, Package, Calendar, ExternalLink } from "lucide-react";
+import { Download, Package, Calendar, ExternalLink, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -24,6 +24,7 @@ const Downloads = () => {
   const { user } = useAuth();
   const [purchases, setPurchases] = useState<Purchase[]>([]);
   const [loading, setLoading] = useState(true);
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -53,15 +54,18 @@ const Downloads = () => {
   };
 
   const handleDownload = async (purchase: Purchase) => {
-    // Update downloaded_at timestamp
-    await supabase
-      .from("purchases")
-      .update({ downloaded_at: new Date().toISOString() })
-      .eq("id", purchase.id);
+    setDownloadingId(purchase.id);
+    try {
+      await supabase
+        .from("purchases")
+        .update({ downloaded_at: new Date().toISOString() })
+        .eq("id", purchase.id);
 
-    // In a real app, this would trigger a secure download
-    if (purchase.product.file_url) {
-      window.open(purchase.product.file_url, "_blank");
+      if (purchase.product.file_url) {
+        window.open(purchase.product.file_url, "_blank");
+      }
+    } finally {
+      setDownloadingId(null);
     }
   };
 
@@ -144,9 +148,13 @@ const Downloads = () => {
                       variant="hero" 
                       className="flex-1 sm:flex-none glow-sm"
                       onClick={() => handleDownload(purchase)}
+                      disabled={downloadingId === purchase.id}
                     >
-                      <Download className="w-4 h-4 mr-2" />
-                      Download
+                      {downloadingId === purchase.id ? (
+                        <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Preparing...</>
+                      ) : (
+                        <><Download className="w-4 h-4 mr-2" />Download</>
+                      )}
                     </Button>
                     <Button variant="outline" className="flex-1 sm:flex-none border-border">
                       <ExternalLink className="w-4 h-4 mr-2" />

@@ -35,6 +35,7 @@ import {
   Trash2,
   Star,
   Filter,
+  Loader2,
 } from "lucide-react";
 
 interface Product {
@@ -57,6 +58,7 @@ interface Product {
 const AdminProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [busyId, setBusyId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const { toast } = useToast();
@@ -93,6 +95,7 @@ const AdminProducts = () => {
   };
 
   const handleStatusChange = async (productId: string, newStatus: string) => {
+    setBusyId(productId);
     try {
       const { error } = await supabase
         .from("products")
@@ -114,10 +117,13 @@ const AdminProducts = () => {
         description: "Failed to update product status.",
         variant: "destructive",
       });
+    } finally {
+      setBusyId(null);
     }
   };
 
   const handleToggleFeatured = async (productId: string, isFeatured: boolean) => {
+    setBusyId(productId);
     try {
       const { error } = await supabase
         .from("products")
@@ -139,12 +145,14 @@ const AdminProducts = () => {
         description: "Failed to update featured status.",
         variant: "destructive",
       });
+    } finally {
+      setBusyId(null);
     }
   };
 
   const handleDeleteProduct = async (productId: string) => {
     if (!confirm("Are you sure you want to delete this product?")) return;
-
+    setBusyId(productId);
     try {
       const { error } = await supabase.from("products").delete().eq("id", productId);
 
@@ -163,6 +171,8 @@ const AdminProducts = () => {
         description: "Failed to delete product.",
         variant: "destructive",
       });
+    } finally {
+      setBusyId(null);
     }
   };
 
@@ -295,8 +305,12 @@ const AdminProducts = () => {
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon">
-                              <MoreHorizontal className="h-4 w-4" />
+                            <Button variant="ghost" size="icon" disabled={busyId === product.id}>
+                              {busyId === product.id ? (
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                              ) : (
+                                <MoreHorizontal className="h-4 w-4" />
+                              )}
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">

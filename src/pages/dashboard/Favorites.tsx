@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Heart, Package, Trash2, ShoppingCart, Star } from "lucide-react";
+import { Heart, Package, Trash2, ShoppingCart, Star, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -25,6 +25,7 @@ const Favorites = () => {
   const { toast } = useToast();
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [loading, setLoading] = useState(true);
+  const [removingId, setRemovingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -53,6 +54,7 @@ const Favorites = () => {
   };
 
   const handleRemove = async (favoriteId: string) => {
+    setRemovingId(favoriteId);
     try {
       const { error } = await supabase
         .from("favorites")
@@ -72,6 +74,8 @@ const Favorites = () => {
         description: "Failed to remove from favorites.",
         variant: "destructive",
       });
+    } finally {
+      setRemovingId(null);
     }
   };
 
@@ -113,9 +117,14 @@ const Favorites = () => {
                 )}
                 <button
                   onClick={() => handleRemove(favorite.id)}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-destructive/80 hover:bg-destructive flex items-center justify-center transition-colors"
+                  disabled={removingId === favorite.id}
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-destructive/80 hover:bg-destructive flex items-center justify-center transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Heart className="w-4 h-4 text-white fill-white" />
+                  {removingId === favorite.id ? (
+                    <Loader2 className="w-4 h-4 text-white animate-spin" />
+                  ) : (
+                    <Heart className="w-4 h-4 text-white fill-white" />
+                  )}
                 </button>
               </div>
 
@@ -143,9 +152,14 @@ const Favorites = () => {
                     variant="ghost" 
                     size="sm"
                     onClick={() => handleRemove(favorite.id)}
+                    disabled={removingId === favorite.id}
                     className="text-muted-foreground hover:text-destructive"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    {removingId === favorite.id ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Trash2 className="w-4 h-4" />
+                    )}
                   </Button>
                 </div>
               </CardContent>
