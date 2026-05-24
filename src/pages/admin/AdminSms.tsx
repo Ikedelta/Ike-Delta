@@ -30,7 +30,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Send, Clock, Users, Search, Trash2 } from "lucide-react";
+import { Plus, Send, Clock, Users, Search, Trash2, Loader2 } from "lucide-react";
 
 interface SmsMessage {
   id: string;
@@ -52,6 +52,9 @@ const AdminSms = () => {
   const [messages, setMessages] = useState<SmsMessage[]>([]);
   const [templates, setTemplates] = useState<SmsTemplate[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sending, setSending] = useState(false);
+  const [savingTemplate, setSavingTemplate] = useState(false);
+  const [deletingTemplateId, setDeletingTemplateId] = useState<string | null>(null);
   const [sendDialogOpen, setSendDialogOpen] = useState(false);
   const [templateDialogOpen, setTemplateDialogOpen] = useState(false);
   const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
@@ -101,6 +104,7 @@ const AdminSms = () => {
       return;
     }
 
+    setSending(true);
     try {
       // Insert into database - will be sent via edge function when API keys are configured
       const { error } = await supabase.from("sms_messages").insert({
@@ -127,6 +131,8 @@ const AdminSms = () => {
         description: "Failed to queue SMS message.",
         variant: "destructive",
       });
+    } finally {
+      setSending(false);
     }
   };
 
@@ -139,6 +145,7 @@ const AdminSms = () => {
       });
       return;
     }
+    setSavingTemplate(true);
 
     try {
       const { error } = await supabase.from("sms_templates").insert({
@@ -164,10 +171,13 @@ const AdminSms = () => {
         description: "Failed to save template.",
         variant: "destructive",
       });
+    } finally {
+      setSavingTemplate(false);
     }
   };
 
   const handleDeleteTemplate = async (templateId: string) => {
+    setDeletingTemplateId(templateId);
     try {
       const { error } = await supabase
         .from("sms_templates")
@@ -189,6 +199,8 @@ const AdminSms = () => {
         description: "Failed to delete template.",
         variant: "destructive",
       });
+    } finally {
+      setDeletingTemplateId(null);
     }
   };
 
