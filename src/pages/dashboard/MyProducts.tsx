@@ -10,7 +10,8 @@ import {
   Edit, 
   Trash2,
   Star,
-  Download as DownloadIcon
+  Download as DownloadIcon,
+  Loader2,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,7 @@ const MyProducts = () => {
   const { toast } = useToast();
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -52,6 +54,7 @@ const MyProducts = () => {
   };
 
   const handleDelete = async (productId: string) => {
+    setDeletingId(productId);
     try {
       const { error } = await supabase
         .from("products")
@@ -71,6 +74,8 @@ const MyProducts = () => {
         description: "Failed to delete product.",
         variant: "destructive",
       });
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -149,8 +154,12 @@ const MyProducts = () => {
                   </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <MoreVertical className="w-4 h-4" />
+                      <Button variant="ghost" size="icon" className="h-8 w-8" disabled={deletingId === product.id}>
+                        {deletingId === product.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <MoreVertical className="w-4 h-4" />
+                        )}
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="bg-card border-border">
