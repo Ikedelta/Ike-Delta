@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2 } from "lucide-react";
+import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
 
 interface Category {
   id: string;
@@ -36,6 +36,8 @@ interface Category {
 const AdminCategories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [formData, setFormData] = useState({
@@ -104,6 +106,7 @@ const AdminCategories = () => {
       return;
     }
 
+    setSaving(true);
     try {
       if (editingCategory) {
         const { error } = await supabase
@@ -147,12 +150,14 @@ const AdminCategories = () => {
         description: "Failed to save category.",
         variant: "destructive",
       });
+    } finally {
+      setSaving(false);
     }
   };
 
   const handleDelete = async (categoryId: string) => {
     if (!confirm("Are you sure you want to delete this category?")) return;
-
+    setDeletingId(categoryId);
     try {
       const { error } = await supabase.from("categories").delete().eq("id", categoryId);
 
@@ -171,6 +176,8 @@ const AdminCategories = () => {
         description: "Failed to delete category.",
         variant: "destructive",
       });
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -247,8 +254,13 @@ const AdminCategories = () => {
                           variant="ghost"
                           size="icon"
                           onClick={() => handleDelete(category.id)}
+                          disabled={deletingId === category.id}
                         >
-                          <Trash2 className="h-4 w-4 text-destructive" />
+                          {deletingId === category.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin text-destructive" />
+                          ) : (
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          )}
                         </Button>
                       </div>
                     </TableCell>
@@ -316,11 +328,13 @@ const AdminCategories = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>
+            <Button variant="outline" onClick={() => setDialogOpen(false)} disabled={saving}>
               Cancel
             </Button>
-            <Button onClick={handleSubmit}>
-              {editingCategory ? "Update" : "Create"}
+            <Button onClick={handleSubmit} disabled={saving}>
+              {saving ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Saving...</>
+              ) : editingCategory ? "Update" : "Create"}
             </Button>
           </DialogFooter>
         </DialogContent>
