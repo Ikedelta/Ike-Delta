@@ -23,7 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Send, Mail, Users, Eye, Trash2, Clock } from "lucide-react";
+import { Plus, Send, Mail, Users, Eye, Trash2, Clock, Loader2 } from "lucide-react";
 
 interface Newsletter {
   id: string;
@@ -48,6 +48,8 @@ const AdminNewsletters = () => {
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState<"draft" | "sent" | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [previewDialogOpen, setPreviewDialogOpen] = useState(false);
   const [selectedNewsletter, setSelectedNewsletter] = useState<Newsletter | null>(null);
@@ -93,6 +95,7 @@ const AdminNewsletters = () => {
       return;
     }
 
+    setSaving(status);
     try {
       const activeSubscribers = subscribers.filter((s) => s.is_active);
 
@@ -125,10 +128,13 @@ const AdminNewsletters = () => {
         description: "Failed to create newsletter.",
         variant: "destructive",
       });
+    } finally {
+      setSaving(null);
     }
   };
 
   const handleDeleteNewsletter = async (newsletterId: string) => {
+    setDeletingId(newsletterId);
     try {
       const { error } = await supabase
         .from("newsletters")
@@ -150,10 +156,13 @@ const AdminNewsletters = () => {
         description: "Failed to delete newsletter.",
         variant: "destructive",
       });
+    } finally {
+      setDeletingId(null);
     }
   };
 
   const handleDeleteSubscriber = async (subscriberId: string) => {
+    setDeletingId(subscriberId);
     try {
       const { error } = await supabase
         .from("newsletter_subscribers")
@@ -175,6 +184,8 @@ const AdminNewsletters = () => {
         description: "Failed to remove subscriber.",
         variant: "destructive",
       });
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -297,8 +308,13 @@ const AdminNewsletters = () => {
                           variant="ghost"
                           size="icon"
                           onClick={() => handleDeleteNewsletter(newsletter.id)}
+                          disabled={deletingId === newsletter.id}
                         >
-                          <Trash2 className="h-4 w-4 text-destructive" />
+                          {deletingId === newsletter.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin text-destructive" />
+                          ) : (
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          )}
                         </Button>
                       </div>
                     </TableCell>
@@ -353,8 +369,13 @@ const AdminNewsletters = () => {
                         variant="ghost"
                         size="icon"
                         onClick={() => handleDeleteSubscriber(subscriber.id)}
+                        disabled={deletingId === subscriber.id}
                       >
-                        <Trash2 className="h-4 w-4 text-destructive" />
+                        {deletingId === subscriber.id ? (
+                          <Loader2 className="h-4 w-4 animate-spin text-destructive" />
+                        ) : (
+                          <Trash2 className="h-4 w-4 text-destructive" />
+                        )}
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -404,19 +425,27 @@ const AdminNewsletters = () => {
             <Button
               variant="outline"
               onClick={() => setCreateDialogOpen(false)}
+              disabled={saving !== null}
             >
               Cancel
             </Button>
             <Button
               variant="secondary"
               onClick={() => handleCreateNewsletter("draft")}
+              disabled={saving !== null}
             >
-              <Clock className="h-4 w-4 mr-2" />
-              Save Draft
+              {saving === "draft" ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Saving...</>
+              ) : (
+                <><Clock className="h-4 w-4 mr-2" />Save Draft</>
+              )}
             </Button>
-            <Button onClick={() => handleCreateNewsletter("sent")}>
-              <Send className="h-4 w-4 mr-2" />
-              Send Now
+            <Button onClick={() => handleCreateNewsletter("sent")} disabled={saving !== null}>
+              {saving === "sent" ? (
+                <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Sending...</>
+              ) : (
+                <><Send className="h-4 w-4 mr-2" />Send Now</>
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>
