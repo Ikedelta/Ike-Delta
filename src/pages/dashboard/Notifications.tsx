@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { Bell, Check, Trash2, Info, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
+import { Bell, Check, Trash2, Info, AlertTriangle, CheckCircle, XCircle, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -21,6 +21,7 @@ const Notifications = () => {
   const { toast } = useToast();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState(true);
+  const [markingAll, setMarkingAll] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -63,6 +64,7 @@ const Notifications = () => {
   };
 
   const markAllAsRead = async () => {
+    setMarkingAll(true);
     try {
       const { error } = await supabase
         .from("notifications")
@@ -83,6 +85,8 @@ const Notifications = () => {
         description: "Failed to mark notifications as read.",
         variant: "destructive",
       });
+    } finally {
+      setMarkingAll(false);
     }
   };
 
@@ -125,9 +129,12 @@ const Notifications = () => {
           </p>
         </div>
         {unreadCount > 0 && (
-          <Button variant="outline" className="border-border" onClick={markAllAsRead}>
-            <Check className="w-4 h-4 mr-2" />
-            Mark All as Read
+          <Button variant="outline" className="border-border" onClick={markAllAsRead} disabled={markingAll}>
+            {markingAll ? (
+              <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Marking...</>
+            ) : (
+              <><Check className="w-4 h-4 mr-2" />Mark All as Read</>
+            )}
           </Button>
         )}
       </div>
