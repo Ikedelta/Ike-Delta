@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { 
-  Package, 
-  Download, 
-  Heart, 
-  DollarSign,
+import {
+  Package,
+  Download,
+  Heart,
   TrendingUp,
-  Eye,
   Star,
   ArrowUpRight,
-  Clock
 } from "lucide-react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 

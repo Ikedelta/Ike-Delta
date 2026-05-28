@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { useNavigate, Outlet, Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { 
-  LayoutDashboard, 
-  Package, 
-  Download, 
-  Heart, 
-  Settings, 
-  Bell, 
-  Plus,
+import {
+  LayoutDashboard,
+  Download,
+  Heart,
+  Settings,
+  Bell,
   Loader2,
   Sparkles,
   LogOut,
   ChevronRight
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
