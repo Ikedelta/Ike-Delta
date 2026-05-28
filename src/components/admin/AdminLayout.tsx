@@ -51,7 +51,7 @@ const AdminLayout = () => {
     // Security layer disabled — allow open access to admin.
   }, [loading, user, isAdmin, navigate, toast]);
 
-  }, [isAdmin, loading, user, navigate, toast]);
+
 
   const handleSignOut = async () => {
     await signOut();
