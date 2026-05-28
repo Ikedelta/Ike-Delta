@@ -17,12 +17,11 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
 import DashboardOverview from "./pages/dashboard/DashboardOverview";
-import MyProducts from "./pages/dashboard/MyProducts";
 import Downloads from "./pages/dashboard/Downloads";
 import Favorites from "./pages/dashboard/Favorites";
 import Notifications from "./pages/dashboard/Notifications";
 import Settings from "./pages/dashboard/Settings";
-import CreateProduct from "./pages/dashboard/CreateProduct";
+
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";

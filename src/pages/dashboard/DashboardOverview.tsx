@@ -49,45 +49,23 @@ const DashboardOverview = () => {
 
   const fetchDashboardData = async () => {
     try {
-      // Fetch user's products
-      const { data: products, error: productsError } = await supabase
-        .from("products")
-        .select("*")
-        .eq("seller_id", user?.id)
-        .order("created_at", { ascending: false })
-        .limit(5);
-
-      if (productsError) throw productsError;
-
-      // Fetch user's purchases (downloads)
-      const { data: purchases, error: purchasesError } = await supabase
+      const { data: purchases } = await supabase
         .from("purchases")
         .select("*")
         .eq("user_id", user?.id);
 
-      if (purchasesError) throw purchasesError;
-
-      // Fetch user's favorites
-      const { data: favorites, error: favoritesError } = await supabase
+      const { data: favorites } = await supabase
         .from("favorites")
         .select("*")
         .eq("user_id", user?.id);
 
-      if (favoritesError) throw favoritesError;
-
-      // Calculate stats
-      const totalDownloads = products?.reduce((acc, p) => acc + (p.download_count || 0), 0) || 0;
-      const totalEarnings = purchases?.filter(p => p.status === 'completed')
-        .reduce((acc, p) => acc + Number(p.amount), 0) || 0;
-
       setStats({
-        totalProducts: products?.length || 0,
-        totalDownloads,
+        totalProducts: 0,
+        totalDownloads: purchases?.length || 0,
         totalFavorites: favorites?.length || 0,
-        totalEarnings,
+        totalEarnings: 0,
       });
-
-      setRecentProducts(products || []);
+      setRecentProducts([]);
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
     } finally {
@@ -95,36 +73,31 @@ const DashboardOverview = () => {
     }
   };
 
+
   const statCards = [
-    { 
-      title: "Total Products", 
-      value: stats.totalProducts, 
-      icon: Package, 
-      color: "from-primary to-primary/50",
-      change: "+12%"
-    },
-    { 
-      title: "Downloads", 
-      value: stats.totalDownloads, 
-      icon: Download, 
+    {
+      title: "Downloads",
+      value: stats.totalDownloads,
+      icon: Download,
       color: "from-accent to-accent/50",
       change: "+8%"
     },
-    { 
-      title: "Favorites", 
-      value: stats.totalFavorites, 
-      icon: Heart, 
+    {
+      title: "Favorites",
+      value: stats.totalFavorites,
+      icon: Heart,
       color: "from-orange-500 to-red-500/60",
       change: "+24%"
     },
-    { 
-      title: "Earnings", 
-      value: `₵${stats.totalEarnings.toFixed(2)}`, 
-      icon: DollarSign, 
-      color: "from-green-500 to-green-500/50",
-      change: "+18%"
+    {
+      title: "Orders",
+      value: stats.totalDownloads,
+      icon: Package,
+      color: "from-primary to-primary/50",
+      change: "+12%"
     },
   ];
+
 
   return (
     <div className="p-6 lg:p-8 pb-24 lg:pb-8">
