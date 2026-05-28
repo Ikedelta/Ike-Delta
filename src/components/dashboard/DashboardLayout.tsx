@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { useNavigate, Outlet, Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { 
-  LayoutDashboard, 
-  Package, 
-  Download, 
-  Heart, 
-  Settings, 
-  Bell, 
-  Plus,
+import {
+  LayoutDashboard,
+  Download,
+  Heart,
+  Settings,
+  Bell,
   Loader2,
   Sparkles,
   LogOut,
   ChevronRight
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -50,12 +49,12 @@ const DashboardLayout = () => {
 
   const navItems = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
-    { name: "My Products", href: "/dashboard/products", icon: Package },
     { name: "Downloads", href: "/dashboard/downloads", icon: Download },
     { name: "Favorites", href: "/dashboard/favorites", icon: Heart },
     { name: "Notifications", href: "/dashboard/notifications", icon: Bell },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -91,17 +90,18 @@ const DashboardLayout = () => {
           })}
         </nav>
 
-        {/* Create Button */}
+        {/* Browse Marketplace */}
         <div className="p-4 border-t border-border">
-          <Button 
-            variant="hero" 
+          <Button
+            variant="hero"
             className="w-full glow-sm"
-            onClick={() => navigate("/dashboard/products/new")}
+            onClick={() => navigate("/explore")}
           >
-            <Plus className="w-4 h-4 mr-2" />
-            Create Product
+            <Sparkles className="w-4 h-4 mr-2" />
+            Browse Marketplace
           </Button>
         </div>
+
 
         {/* User Section */}
         <div className="p-4 border-t border-border">

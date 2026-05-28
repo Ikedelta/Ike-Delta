@@ -51,7 +51,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-xs leading-relaxed">
-              The premium marketplace for digital creators. Find and sell beautiful design assets, templates, and courses.
+              The premium marketplace for digital creators. Discover beautiful design assets, templates, and courses curated for you.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
