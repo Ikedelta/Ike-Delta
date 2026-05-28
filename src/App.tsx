@@ -58,13 +58,12 @@ const App = () => (
             <Route path="/auth/register" element={<Register />} />
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route index element={<DashboardOverview />} />
-              <Route path="products" element={<MyProducts />} />
-              <Route path="products/new" element={<CreateProduct />} />
               <Route path="downloads" element={<Downloads />} />
               <Route path="favorites" element={<Favorites />} />
               <Route path="notifications" element={<Notifications />} />
               <Route path="settings" element={<Settings />} />
             </Route>
+
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />

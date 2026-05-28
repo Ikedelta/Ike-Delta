@@ -158,11 +158,11 @@ const DashboardOverview = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Recent Products */}
+        {/* Recent Downloads */}
         <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="font-display text-lg">Recent Products</CardTitle>
-            <Link to="/dashboard/products">
+            <CardTitle className="font-display text-lg">Recent Downloads</CardTitle>
+            <Link to="/dashboard/downloads">
               <Button variant="ghost" size="sm" className="text-primary">
                 View All <ArrowUpRight className="w-4 h-4 ml-1" />
               </Button>
@@ -175,48 +175,12 @@ const DashboardOverview = () => {
                   <div key={i} className="h-16 bg-muted rounded-lg animate-pulse" />
                 ))}
               </div>
-            ) : recentProducts.length > 0 ? (
-              <div className="space-y-4">
-                {recentProducts.map((product) => (
-                  <div 
-                    key={product.id} 
-                    className="flex items-center gap-4 p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                      <Package className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-foreground truncate">{product.title}</h4>
-                      <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Eye className="w-3 h-3" /> {product.download_count}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Star className="w-3 h-3" /> {product.rating || 0}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-semibold text-foreground">
-                        {product.is_free ? "Free" : `₵${product.price}`}
-                      </p>
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${
-                        product.status === 'published' 
-                          ? 'bg-green-500/10 text-green-500' 
-                          : 'bg-yellow-500/10 text-yellow-500'
-                      }`}>
-                        {product.status}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
             ) : (
               <div className="text-center py-8">
                 <Package className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
-                <p className="text-muted-foreground mb-4">No products yet</p>
-                <Link to="/dashboard/products/new">
-                  <Button variant="hero" size="sm">Create Your First Product</Button>
+                <p className="text-muted-foreground mb-4">No downloads yet</p>
+                <Link to="/explore">
+                  <Button variant="hero" size="sm">Browse Marketplace</Button>
                 </Link>
               </div>
             )}
@@ -229,16 +193,16 @@ const DashboardOverview = () => {
             <CardTitle className="font-display text-lg">Quick Actions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Link to="/dashboard/products/new" className="block">
-              <Button variant="outline" className="w-full justify-start border-border hover:border-primary/50">
-                <Package className="w-4 h-4 mr-3" />
-                Create New Product
-              </Button>
-            </Link>
             <Link to="/explore" className="block">
               <Button variant="outline" className="w-full justify-start border-border hover:border-primary/50">
                 <Download className="w-4 h-4 mr-3" />
                 Browse Products
+              </Button>
+            </Link>
+            <Link to="/dashboard/favorites" className="block">
+              <Button variant="outline" className="w-full justify-start border-border hover:border-primary/50">
+                <Heart className="w-4 h-4 mr-3" />
+                View Favorites
               </Button>
             </Link>
             <Link to="/dashboard/settings" className="block">
@@ -250,6 +214,7 @@ const DashboardOverview = () => {
           </CardContent>
         </Card>
       </div>
+
 
       {/* Recent Activity */}
       <Card className="mt-6 bg-card border-border">
