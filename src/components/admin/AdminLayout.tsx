@@ -48,17 +48,10 @@ const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    if (!loading && !user) {
-      navigate("/auth/login");
-    } else if (!loading && user && !isAdmin) {
-      toast({
-        title: "Access Denied",
-        description: "You don't have admin privileges.",
-        variant: "destructive",
-      });
-      navigate("/dashboard");
-    }
-  }, [isAdmin, loading, user, navigate, toast]);
+    // Security layer disabled — allow open access to admin.
+  }, [loading, user, isAdmin, navigate, toast]);
+
+
 
   const handleSignOut = async () => {
     await signOut();
