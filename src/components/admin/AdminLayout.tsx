@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
-import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
-import { useAdminCheck } from "@/hooks/useAdminCheck";
+import { useState } from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { useAuth } from "@/contexts/AuthContext";
-import { useToast } from "@/hooks/use-toast";
 import {
   LayoutDashboard,
   Users,
@@ -14,7 +10,6 @@ import {
   Mail,
   BarChart3,
   Settings,
-  LogOut,
   Bell,
   Menu,
   X,
@@ -40,48 +35,8 @@ const navItems = [
 ];
 
 const AdminLayout = () => {
-  const { isAdmin, loading, user } = useAdminCheck();
-  const { signOut } = useAuth();
-  const navigate = useNavigate();
   const location = useLocation();
-  const { toast } = useToast();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  useEffect(() => {
-    if (loading) return;
-    if (!user) {
-      navigate("/admin/login");
-    } else if (!isAdmin) {
-      toast({
-        title: "Access Denied",
-        description: "This area is for administrators only.",
-        variant: "destructive",
-      });
-      navigate("/dashboard");
-    }
-  }, [loading, user, isAdmin, navigate, toast]);
-
-
-
-
-  const handleSignOut = async () => {
-    await signOut();
-    toast({ title: "Signed out", description: "You have been signed out successfully." });
-    navigate("/");
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-mesh">
-        <div className="relative">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-primary/20 border-t-primary"></div>
-          <Sparkles className="absolute inset-0 m-auto h-6 w-6 text-primary animate-pulse" />
-        </div>
-      </div>
-    );
-  }
-
-  if (!isAdmin) return null;
 
   const activeItem = navItems.find((i) => i.path === location.pathname);
 
@@ -179,27 +134,11 @@ const AdminLayout = () => {
             </div>
           </div>
 
-          {/* User Section */}
+          {/* Footer area */}
           <div className="p-4 border-t border-primary/10">
-            <div className="flex items-center gap-3 mb-3 p-2 rounded-xl bg-muted/40">
-              <div className="h-10 w-10 rounded-full bg-gradient-primary flex items-center justify-center font-bold text-white">
-                {user?.email?.[0]?.toUpperCase() ?? "A"}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">{user?.email}</p>
-                <Badge variant="secondary" className="mt-0.5 h-4 text-[10px] bg-primary/20 text-primary border-0">
-                  Administrator
-                </Badge>
-              </div>
-            </div>
-            <Button
-              variant="outline"
-              className="w-full justify-start gap-2 border-primary/20 hover:bg-primary/10 hover:text-primary hover:border-primary/40"
-              onClick={handleSignOut}
-            >
-              <LogOut className="h-4 w-4" />
-              Sign Out
-            </Button>
+            <p className="text-xs text-muted-foreground text-center">
+              CreativeHub Admin v1.0
+            </p>
           </div>
         </div>
       </aside>
@@ -223,7 +162,7 @@ const AdminLayout = () => {
             <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-accent animate-pulse" />
           </Button>
           <div className="h-9 w-9 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-sm glow-sm">
-            {user?.email?.[0]?.toUpperCase() ?? "A"}
+            A
           </div>
         </div>
       </div>
