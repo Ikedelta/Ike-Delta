@@ -126,7 +126,9 @@ const Pricing = () => {
                   {plan.cta}
                 </Button>
               </div>
-            ))}
+              );
+            })}
+
           </div>
 
           {/* FAQ Teaser */}
