@@ -1,4 +1,8 @@
 import { Star, Quote } from "lucide-react";
+import avatarKofi from "@/assets/avatar-kofi.jpg";
+import avatarAma from "@/assets/avatar-ama.jpg";
+import avatarKwame from "@/assets/avatar-kwame.jpg";
+
 
 const TestimonialsSection = () => {
   const testimonials = [
@@ -6,7 +10,7 @@ const TestimonialsSection = () => {
       id: 1,
       name: "Kofi Mensah",
       role: "UI Designer at TechGhana",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      avatar: avatarKofi,
       content: "CreativeHub has completely transformed my workflow. The quality of assets here is unmatched, and I've saved countless hours on my projects.",
       rating: 5,
     },
@@ -14,7 +18,7 @@ const TestimonialsSection = () => {
       id: 2,
       name: "Ama Owusu",
       role: "Freelance Designer",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
+      avatar: avatarAma,
       content: "As a freelancer, having access to premium templates and UI kits at such great prices has helped me deliver better work to my clients faster.",
       rating: 5,
     },
@@ -22,7 +26,7 @@ const TestimonialsSection = () => {
       id: 3,
       name: "Kwame Asante",
       role: "Creative Director",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      avatar: avatarKwame,
       content: "The courses on CreativeHub are exceptional. I've upskilled my entire team using the design masterclasses available here.",
       rating: 5,
     },

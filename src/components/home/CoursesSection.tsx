@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, Clock, Users, Star, ArrowRight } from "lucide-react";
+import courseUiux from "@/assets/course-uiux.jpg";
+import courseFigma from "@/assets/course-figma.jpg";
+import courseDesignSystems from "@/assets/course-design-systems.jpg";
+
 
 const CoursesSection = () => {
   const courses = [
@@ -13,7 +17,7 @@ const CoursesSection = () => {
       rating: 4.9,
       price: 99,
       originalPrice: 199,
-      image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop",
+      image: courseUiux,
       level: "Beginner",
       lessons: 48,
     },
@@ -25,7 +29,7 @@ const CoursesSection = () => {
       students: 1890,
       rating: 4.8,
       price: 79,
-      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=400&fit=crop",
+      image: courseFigma,
       level: "Intermediate",
       lessons: 32,
     },
@@ -37,7 +41,7 @@ const CoursesSection = () => {
       students: 2150,
       rating: 4.9,
       price: 0,
-      image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
+      image: courseDesignSystems,
       level: "Advanced",
       lessons: 40,
     },
