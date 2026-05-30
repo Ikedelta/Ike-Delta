@@ -1,6 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Download, Star, ArrowRight, ShoppingCart } from "lucide-react";
+import productUiKit from "@/assets/product-ui-kit.jpg";
+import productPatterns from "@/assets/product-patterns.jpg";
+import productBranding from "@/assets/product-branding.jpg";
+import productIcons from "@/assets/product-icons.jpg";
+import productMobile from "@/assets/product-mobile.jpg";
+import productSocial from "@/assets/product-social.jpg";
+
+
 
 const FeaturedProducts = () => {
   const products = [
