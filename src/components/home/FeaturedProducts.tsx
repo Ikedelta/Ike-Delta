@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
       reviews: 234,
       downloads: 1250,
       category: "UI Kit",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      image: productUiKit,
       featured: true,
     },
     {
@@ -34,7 +34,7 @@ const FeaturedProducts = () => {
       reviews: 89,
       downloads: 5420,
       category: "Graphics",
-      image: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&h=400&fit=crop",
+      image: productPatterns,
       featured: false,
     },
     {
@@ -46,7 +46,7 @@ const FeaturedProducts = () => {
       reviews: 156,
       downloads: 890,
       category: "Mockup",
-      image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop",
+      image: productBranding,
       featured: false,
     },
     {
@@ -59,7 +59,7 @@ const FeaturedProducts = () => {
       reviews: 412,
       downloads: 3200,
       category: "Icons",
-      image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=400&fit=crop",
+      image: productIcons,
       featured: true,
     },
     {
@@ -71,7 +71,7 @@ const FeaturedProducts = () => {
       reviews: 98,
       downloads: 560,
       category: "Template",
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
+      image: productMobile,
       featured: false,
     },
     {
@@ -83,7 +83,7 @@ const FeaturedProducts = () => {
       reviews: 267,
       downloads: 2100,
       category: "Graphics",
-      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&h=400&fit=crop",
+      image: productSocial,
       featured: false,
     },
   ];
