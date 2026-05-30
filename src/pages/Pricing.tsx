@@ -64,25 +64,27 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16">
+      <main className="pt-20 sm:pt-24 pb-16">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="text-center mb-16">
-            <span className="text-primary font-semibold mb-4 block text-sm uppercase tracking-wider">Pricing</span>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <span className="text-primary font-semibold mb-3 sm:mb-4 block text-xs sm:text-sm uppercase tracking-wider">Pricing</span>
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
               Simple, Transparent Pricing
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-2">
               Choose the plan that works best for you. All plans include a 7-day free trial.
             </p>
           </div>
 
           {/* Pricing Cards */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {plans.map((plan) => (
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            {plans.map((plan) => {
+              const Icon = planIcons[plan.name as keyof typeof planIcons];
+              return (
               <div
                 key={plan.name}
-                className={`relative bg-card rounded-3xl border p-8 ${
+                className={`relative bg-card rounded-3xl border p-6 sm:p-8 ${
                   plan.popular ? 'border-primary glow' : 'border-border'
                 } card-hover`}
               >
@@ -93,15 +95,19 @@ const Pricing = () => {
                   </Badge>
                 )}
                 
-                <div className="text-center mb-8">
-                  <h3 className="font-display font-bold text-2xl text-foreground mb-2">{plan.name}</h3>
-                  <p className="text-muted-foreground text-sm mb-6">{plan.description}</p>
+                <div className="text-center mb-6 sm:mb-8">
+                  <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center ${plan.popular ? 'bg-gradient-primary glow-sm' : 'bg-primary/10'}`}>
+                    <Icon className={`w-7 h-7 sm:w-8 sm:h-8 ${plan.popular ? 'text-primary-foreground' : 'text-primary'}`} />
+                  </div>
+                  <h3 className="font-display font-bold text-xl sm:text-2xl text-foreground mb-2">{plan.name}</h3>
+                  <p className="text-muted-foreground text-sm mb-4 sm:mb-6">{plan.description}</p>
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-muted-foreground">GHS</span>
-                    <span className="font-display font-bold text-5xl text-foreground">{plan.price}</span>
+                    <span className="font-display font-bold text-4xl sm:text-5xl text-foreground">{plan.price}</span>
                     <span className="text-muted-foreground">/{plan.period}</span>
                   </div>
                 </div>
+
 
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature) => (
