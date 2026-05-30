@@ -3,26 +3,33 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Users, Star, Play, BookOpen } from "lucide-react";
+import courseUiux from "@/assets/course-uiux.jpg";
+import courseFigma from "@/assets/course-figma.jpg";
+import courseBranding from "@/assets/course-branding.jpg";
+import courseMotion from "@/assets/course-motion.jpg";
+import courseWebdev from "@/assets/course-webdev.jpg";
+import coursePhoto from "@/assets/course-photo.jpg";
+
 
 const Courses = () => {
   const courses = [
-    { id: 1, title: "Complete UI/UX Design Masterclass", instructor: "Sarah Johnson", duration: "12 hours", students: 2340, rating: 4.9, price: 89, originalPrice: 149, image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop", level: "Beginner", lessons: 48 },
-    { id: 2, title: "Advanced Figma for Professionals", instructor: "Michael Chen", duration: "8 hours", students: 1890, rating: 4.8, price: 0, image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&h=400&fit=crop", level: "Advanced", lessons: 32 },
-    { id: 3, title: "Brand Identity Design Complete Guide", instructor: "Emma Williams", duration: "10 hours", students: 1560, rating: 4.9, price: 69, image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop", level: "Intermediate", lessons: 36 },
-    { id: 4, title: "Motion Design Fundamentals", instructor: "David Park", duration: "6 hours", students: 980, rating: 4.7, price: 49, image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop", level: "Beginner", lessons: 24 },
-    { id: 5, title: "Web Development Bootcamp", instructor: "Alex Turner", duration: "20 hours", students: 3200, rating: 4.9, price: 129, originalPrice: 199, image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop", level: "Beginner", lessons: 80 },
-    { id: 6, title: "Photography Masterclass", instructor: "Lisa Brown", duration: "8 hours", students: 1450, rating: 4.8, price: 59, image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=600&h=400&fit=crop", level: "Intermediate", lessons: 32 },
+    { id: 1, title: "Complete UI/UX Design Masterclass", instructor: "Sarah Johnson", duration: "12 hours", students: 2340, rating: 4.9, price: 89, originalPrice: 149, image: courseUiux, level: "Beginner", lessons: 48 },
+    { id: 2, title: "Advanced Figma for Professionals", instructor: "Michael Chen", duration: "8 hours", students: 1890, rating: 4.8, price: 0, image: courseFigma, level: "Advanced", lessons: 32 },
+    { id: 3, title: "Brand Identity Design Complete Guide", instructor: "Emma Williams", duration: "10 hours", students: 1560, rating: 4.9, price: 69, image: courseBranding, level: "Intermediate", lessons: 36 },
+    { id: 4, title: "Motion Design Fundamentals", instructor: "David Park", duration: "6 hours", students: 980, rating: 4.7, price: 49, image: courseMotion, level: "Beginner", lessons: 24 },
+    { id: 5, title: "Web Development Bootcamp", instructor: "Alex Turner", duration: "20 hours", students: 3200, rating: 4.9, price: 129, originalPrice: 199, image: courseWebdev, level: "Beginner", lessons: 80 },
+    { id: 6, title: "Photography Masterclass", instructor: "Lisa Brown", duration: "8 hours", students: 1450, rating: 4.8, price: 59, image: coursePhoto, level: "Intermediate", lessons: 32 },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16">
+      <main className="pt-20 sm:pt-24 pb-16">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <span className="text-primary font-semibold mb-4 block text-sm uppercase tracking-wider">Learn</span>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
               All Courses
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -31,11 +38,11 @@ const Courses = () => {
           </div>
 
           {/* Courses Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {courses.map((course) => (
               <div key={course.id} className="group bg-card rounded-2xl border border-border overflow-hidden card-hover">
                 <div className="relative aspect-video overflow-hidden">
-                  <img src={course.image} alt={course.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={course.image} loading="lazy" alt={course.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 flex items-center justify-center bg-background/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center glow-sm group-hover:scale-110 transition-transform cursor-pointer">
                       <Play className="w-6 h-6 text-primary-foreground ml-1" fill="currentColor" />

@@ -27,28 +27,29 @@ const HeroSection = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-5xl md:text-6xl lg:text-8xl font-bold text-foreground mb-8 leading-[1.1] animate-slide-up">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-foreground mb-6 sm:mb-8 leading-[1.1] animate-slide-up">
             Premium Digital Assets for{" "}
             <span className="text-gradient">Creative Minds</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
             Discover thousands of high-quality templates, UI kits, graphics, and courses. 
             Create stunning designs faster than ever before.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <Button variant="hero" size="xl" className="glow hover:scale-105 transition-transform duration-300">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <Button variant="hero" size="xl" className="w-full sm:w-auto glow hover:scale-105 transition-transform duration-300">
               Start Exploring
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button variant="glass" size="xl" className="hover:bg-muted/50">
+            <Button variant="glass" size="xl" className="w-full sm:w-auto hover:bg-muted/50">
               <Play className="w-5 h-5 mr-2 fill-current" />
               Watch Demo
             </Button>
           </div>
+
 
           {/* Stats */}
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
