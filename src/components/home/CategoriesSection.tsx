@@ -13,21 +13,22 @@ const CategoriesSection = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-background relative">
+    <section className="py-16 sm:py-24 lg:py-32 bg-background relative">
       {/* Subtle Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[150px]" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary font-semibold mb-4 block text-sm uppercase tracking-wider">Categories</span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+        <div className="text-center mb-10 sm:mb-16">
+          <span className="text-primary font-semibold mb-3 sm:mb-4 block text-xs sm:text-sm uppercase tracking-wider">Categories</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
             Browse by Category
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-2">
             Find exactly what you need from our curated collection of premium digital assets
           </p>
         </div>
+
 
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
