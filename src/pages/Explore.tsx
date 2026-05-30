@@ -4,30 +4,39 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Heart, Star, Search, SlidersHorizontal, Grid3X3, List, ShoppingCart } from "lucide-react";
+import productUiKit from "@/assets/product-ui-kit.jpg";
+import productPatterns from "@/assets/product-patterns.jpg";
+import productBranding from "@/assets/product-branding.jpg";
+import productIcons from "@/assets/product-icons.jpg";
+import productMobile from "@/assets/product-mobile.jpg";
+import productSocial from "@/assets/product-social.jpg";
+import productWebsite from "@/assets/product-website.jpg";
+import product3d from "@/assets/product-3d.jpg";
+
 
 const Explore = () => {
   const products = [
-    { id: 1, title: "Minimal Dashboard UI Kit", author: "DesignCraft", price: 49, originalPrice: 79, rating: 4.9, reviews: 234, category: "UI Kit", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop", featured: true },
-    { id: 2, title: "Geometric Pattern Pack", author: "PatternLab", price: 0, rating: 4.7, reviews: 89, category: "Graphics", image: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&h=400&fit=crop", featured: false },
-    { id: 3, title: "Brand Identity Mockup Set", author: "MockupMaster", price: 29, rating: 4.8, reviews: 156, category: "Mockup", image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop", featured: false },
-    { id: 4, title: "Icon Collection Pro", author: "IconWorks", price: 39, originalPrice: 59, rating: 4.9, reviews: 412, category: "Icons", image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=400&fit=crop", featured: true },
-    { id: 5, title: "Mobile App Template", author: "AppStudio", price: 69, rating: 4.8, reviews: 98, category: "Template", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop", featured: false },
-    { id: 6, title: "Social Media Pack", author: "SocialKit", price: 25, rating: 4.6, reviews: 267, category: "Graphics", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&h=400&fit=crop", featured: false },
-    { id: 7, title: "Website Templates Bundle", author: "WebPro", price: 99, rating: 4.9, reviews: 189, category: "Template", image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop", featured: true },
-    { id: 8, title: "3D Icon Pack", author: "3DLabs", price: 45, rating: 4.7, reviews: 134, category: "3D Assets", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop", featured: false },
+    { id: 1, title: "Minimal Dashboard UI Kit", author: "DesignCraft", price: 49, originalPrice: 79, rating: 4.9, reviews: 234, category: "UI Kit", image: productUiKit, featured: true },
+    { id: 2, title: "Geometric Pattern Pack", author: "PatternLab", price: 0, rating: 4.7, reviews: 89, category: "Graphics", image: productPatterns, featured: false },
+    { id: 3, title: "Brand Identity Mockup Set", author: "MockupMaster", price: 29, rating: 4.8, reviews: 156, category: "Mockup", image: productBranding, featured: false },
+    { id: 4, title: "Icon Collection Pro", author: "IconWorks", price: 39, originalPrice: 59, rating: 4.9, reviews: 412, category: "Icons", image: productIcons, featured: true },
+    { id: 5, title: "Mobile App Template", author: "AppStudio", price: 69, rating: 4.8, reviews: 98, category: "Template", image: productMobile, featured: false },
+    { id: 6, title: "Social Media Pack", author: "SocialKit", price: 25, rating: 4.6, reviews: 267, category: "Graphics", image: productSocial, featured: false },
+    { id: 7, title: "Website Templates Bundle", author: "WebPro", price: 99, rating: 4.9, reviews: 189, category: "Template", image: productWebsite, featured: true },
+    { id: 8, title: "3D Icon Pack", author: "3DLabs", price: 45, rating: 4.7, reviews: 134, category: "3D Assets", image: product3d, featured: false },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16">
+      <main className="pt-20 sm:pt-24 pb-16">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="mb-12">
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <div className="mb-8 sm:mb-12">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4">
               Explore All Products
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl">
               Discover thousands of premium digital assets to elevate your creative projects
             </p>
           </div>
@@ -57,7 +66,7 @@ const Explore = () => {
             {products.map((product) => (
               <div key={product.id} className="group bg-card rounded-2xl border border-border overflow-hidden card-hover">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={product.image} loading="lazy" alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <button className="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-colors">
