@@ -2,7 +2,11 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Rocket, Users, Zap } from "lucide-react";
+
+const planIcons = { Free: Zap, Pro: Rocket, Team: Users } as const;
+
+
 
 const Pricing = () => {
   const plans = [
