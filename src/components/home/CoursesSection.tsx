@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, Clock, Users, Star, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import courseUiux from "@/assets/course-uiux.jpg";
 import courseFigma from "@/assets/course-figma.jpg";
 import courseDesignSystems from "@/assets/course-design-systems.jpg";
 
-
 const CoursesSection = () => {
+  const navigate = useNavigate();
   const courses = [
     {
       id: 1,
@@ -58,7 +59,7 @@ const CoursesSection = () => {
               Featured Courses
             </h2>
           </div>
-          <Button variant="outline" className="self-start md:self-auto">
+          <Button onClick={() => navigate("/courses")} variant="outline" className="self-start md:self-auto">
             Browse All Courses
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>

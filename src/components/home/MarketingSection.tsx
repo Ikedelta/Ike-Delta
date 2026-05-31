@@ -10,8 +10,10 @@ import {
   ArrowRight,
   CheckCircle2
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const MarketingSection = () => {
+  const navigate = useNavigate();
   const features = [
     {
       icon: Zap,
@@ -122,7 +124,7 @@ const MarketingSection = () => {
               </ul>
 
               <div className="flex flex-col sm:flex-row items-start gap-6">
-                <Button variant="hero" size="xl" className="glow hover:scale-105 transition-transform">
+                <Button onClick={() => navigate("/auth/register")} variant="hero" size="xl" className="glow hover:scale-105 transition-transform">
                   Start Free Trial
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>

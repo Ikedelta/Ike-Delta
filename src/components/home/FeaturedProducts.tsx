@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Download, Star, ArrowRight, ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 import productUiKit from "@/assets/product-ui-kit.jpg";
 import productPatterns from "@/assets/product-patterns.jpg";
 import productBranding from "@/assets/product-branding.jpg";
@@ -8,9 +10,8 @@ import productIcons from "@/assets/product-icons.jpg";
 import productMobile from "@/assets/product-mobile.jpg";
 import productSocial from "@/assets/product-social.jpg";
 
-
-
 const FeaturedProducts = () => {
+  const navigate = useNavigate();
   const products = [
     {
       id: 1,
@@ -103,7 +104,7 @@ const FeaturedProducts = () => {
               Trending Products
             </h2>
           </div>
-          <Button variant="outline" className="self-start md:self-auto border-border hover:border-primary/50 hover:bg-primary/5 group">
+          <Button onClick={() => navigate("/explore")} variant="outline" className="self-start md:self-auto border-border hover:border-primary/50 hover:bg-primary/5 group">
             View All Products
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
@@ -149,7 +150,7 @@ const FeaturedProducts = () => {
 
                 {/* Quick Add */}
                 <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                  <Button variant="glass" className="w-full glass hover:bg-primary/20">
+                  <Button onClick={() => toast({ title: product.price === 0 ? "Download started" : "Added to cart", description: product.title })} variant="glass" className="w-full glass hover:bg-primary/20">
                     <ShoppingCart className="w-4 h-4 mr-2" />
                     {product.price === 0 ? "Download Free" : "Add to Cart"}
                   </Button>
