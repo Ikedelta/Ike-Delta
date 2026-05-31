@@ -11,21 +11,21 @@ const Footer = () => {
     ],
     Resources: [
       { name: "Blog", href: "/blog" },
-      { name: "Documentation", href: "/docs" },
-      { name: "Help Center", href: "/help" },
-      { name: "API", href: "/api" },
+      { name: "Help Center", href: "/contact" },
+      { name: "Courses", href: "/courses" },
+      { name: "Categories", href: "/categories" },
     ],
     Company: [
       { name: "About", href: "/about" },
-      { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
-      { name: "Partners", href: "/partners" },
+      { name: "Pricing", href: "/pricing" },
+      { name: "Sign In", href: "/auth/login" },
     ],
     Legal: [
-      { name: "Privacy", href: "/privacy" },
-      { name: "Terms", href: "/terms" },
-      { name: "Licenses", href: "/licenses" },
-      { name: "Refunds", href: "/refunds" },
+      { name: "Privacy", href: "/about" },
+      { name: "Terms", href: "/about" },
+      { name: "Licenses", href: "/about" },
+      { name: "Refunds", href: "/contact" },
     ],
   };
 
