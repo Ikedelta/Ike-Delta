@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Star, Download, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const stats = [
     { icon: Download, value: "50K+", label: "Downloads" },
     { icon: Users, value: "12K+", label: "Creators" },
@@ -40,11 +42,11 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto glow hover:scale-105 transition-transform duration-300">
+            <Button onClick={() => navigate("/explore")} variant="hero" size="xl" className="w-full sm:w-auto glow hover:scale-105 transition-transform duration-300">
               Start Exploring
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button variant="glass" size="xl" className="w-full sm:w-auto hover:bg-muted/50">
+            <Button onClick={() => navigate("/courses")} variant="glass" size="xl" className="w-full sm:w-auto hover:bg-muted/50">
               <Play className="w-5 h-5 mr-2 fill-current" />
               Watch Demo
             </Button>

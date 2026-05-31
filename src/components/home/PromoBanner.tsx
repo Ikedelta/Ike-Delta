@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock, Gift, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const PromoBanner = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-24 lg:py-32 relative overflow-hidden">
       {/* Gradient Background */}
@@ -43,7 +45,7 @@ const PromoBanner = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                  <Button variant="accent" size="xl" className="glow-accent hover:scale-105 transition-transform">
+                  <Button onClick={() => navigate("/pricing")} variant="accent" size="xl" className="glow-accent hover:scale-105 transition-transform">
                     Claim Your Discount
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
