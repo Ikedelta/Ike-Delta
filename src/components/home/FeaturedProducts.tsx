@@ -158,7 +158,7 @@ const FeaturedProducts = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <Badge variant="secondary" className="text-xs mb-3 bg-muted text-muted-foreground">
                   {product.category}
                 </Badge>
