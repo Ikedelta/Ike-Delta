@@ -54,17 +54,17 @@ const HeroSection = () => {
 
 
           {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 md:gap-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             {stats.map((stat) => (
-              <div key={stat.label} className="flex items-center gap-4 group">
-                <div className="w-14 h-14 rounded-2xl glass flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
-                  <stat.icon className="w-6 h-6 text-primary" />
+              <div key={stat.label} className="flex items-center gap-3 sm:gap-4 group">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl glass flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 shrink-0">
+                  <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <div className="font-display font-bold text-3xl text-foreground">
+                  <div className="font-display font-bold text-xl sm:text-3xl text-foreground leading-tight">
                     {stat.value}
                   </div>
-                  <div className="text-muted-foreground text-sm">
+                  <div className="text-muted-foreground text-xs sm:text-sm">
                     {stat.label}
                   </div>
                 </div>
