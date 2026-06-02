@@ -280,6 +280,7 @@ const AdminBlog = () => {
           <CardTitle>Blog Posts</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -370,6 +371,7 @@ const AdminBlog = () => {
               )}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
 

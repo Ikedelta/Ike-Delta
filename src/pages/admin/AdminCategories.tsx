@@ -270,6 +270,7 @@ const AdminCategories = () => {
               )}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
 

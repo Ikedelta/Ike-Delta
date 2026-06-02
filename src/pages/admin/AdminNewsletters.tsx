@@ -264,6 +264,7 @@ const AdminNewsletters = () => {
           <CardTitle>Newsletters</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -323,6 +324,7 @@ const AdminNewsletters = () => {
               )}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
 
@@ -332,6 +334,7 @@ const AdminNewsletters = () => {
           <CardTitle>Subscribers</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -383,6 +386,7 @@ const AdminNewsletters = () => {
               )}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
 
