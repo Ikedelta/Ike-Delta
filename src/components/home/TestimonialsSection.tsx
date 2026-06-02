@@ -73,7 +73,7 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Content */}
-              <p className="text-foreground text-lg mb-8 leading-relaxed relative z-10">
+              <p className="text-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed relative z-10">
                 "{testimonial.content}"
               </p>
 
