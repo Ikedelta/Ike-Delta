@@ -11,11 +11,11 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-mesh">
+    <section className="relative min-h-screen flex items-center pt-20 sm:pt-24 pb-12 overflow-hidden bg-mesh">
       {/* Animated Orbs */}
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/30 rounded-full blur-[120px] animate-float" />
-      <div className="absolute bottom-1/3 left-1/5 w-[400px] h-[400px] bg-accent/20 rounded-full blur-[100px] animate-float" style={{ animationDelay: '3s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
+      <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-primary/30 rounded-full blur-[120px] animate-float" />
+      <div className="absolute bottom-1/3 left-1/5 w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] bg-accent/20 rounded-full blur-[100px] animate-float" style={{ animationDelay: '3s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-primary/10 rounded-full blur-[150px]" />
       
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -23,9 +23,9 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass border-primary/20 text-primary mb-8 animate-fade-in">
-            <Star className="w-4 h-4 fill-current" />
-            <span className="text-sm font-medium">Trusted by 12,000+ creators worldwide</span>
+          <div className="inline-flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full glass border-primary/20 text-primary mb-6 sm:mb-8 animate-fade-in max-w-full">
+            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0" />
+            <span className="text-xs sm:text-sm font-medium truncate">Trusted by 12,000+ creators worldwide</span>
           </div>
 
           {/* Headline */}
