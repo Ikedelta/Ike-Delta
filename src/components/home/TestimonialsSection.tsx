@@ -33,28 +33,28 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-card/50 relative">
+    <section className="py-16 sm:py-24 lg:py-32 bg-card/50 relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[200px]" />
+      <div className="absolute top-1/2 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-accent/5 rounded-full blur-[200px]" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary font-semibold mb-4 block text-sm uppercase tracking-wider">Testimonials</span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+        <div className="text-center mb-10 sm:mb-16">
+          <span className="text-primary font-semibold mb-3 sm:mb-4 block text-xs sm:text-sm uppercase tracking-wider">Testimonials</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
             Loved by Creators
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
             Join thousands of designers and developers who trust CreativeHub for their creative needs
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
-              className="group bg-card rounded-2xl border border-border p-8 card-hover relative overflow-hidden"
+              className="group bg-card rounded-2xl border border-border p-6 sm:p-8 card-hover relative overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Gradient Overlay on Hover */}
