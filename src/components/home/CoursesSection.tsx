@@ -49,13 +49,13 @@ const CoursesSection = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-background">
+    <section className="py-16 sm:py-20 lg:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 sm:mb-12">
           <div>
-            <span className="text-primary font-medium mb-4 block">Learn & Grow</span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+            <span className="text-primary font-medium mb-3 sm:mb-4 block text-xs sm:text-sm uppercase tracking-wider">Learn & Grow</span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
               Featured Courses
             </h2>
           </div>
@@ -66,7 +66,7 @@ const CoursesSection = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {courses.map((course) => (
             <div
               key={course.id}
@@ -97,8 +97,8 @@ const CoursesSection = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="font-display font-semibold text-xl text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+              <div className="p-5 sm:p-6">
+                <h3 className="font-display font-semibold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 
@@ -107,7 +107,7 @@ const CoursesSection = () => {
                 </p>
 
                 {/* Stats */}
-                <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-xs sm:text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
                     <span>{course.duration}</span>

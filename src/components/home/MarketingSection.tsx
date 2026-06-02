@@ -57,37 +57,37 @@ const MarketingSection = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-background relative">
+    <section className="py-16 sm:py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[200px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] sm:w-[800px] h-[300px] sm:h-[400px] bg-primary/5 rounded-full blur-[200px]" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Why Choose Us */}
-        <div className="mb-32">
-          <div className="text-center mb-16">
-            <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">Why CreativeHub</Badge>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+        <div className="mb-20 sm:mb-32">
+          <div className="text-center mb-10 sm:mb-16">
+            <Badge className="mb-4 sm:mb-6 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">Why CreativeHub</Badge>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
               Everything You Need to Create
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
               We've built the ultimate platform for African creators with features designed for your success.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <div
                 key={feature.title}
-                className="group bg-card rounded-2xl border border-border p-8 card-hover"
+                className="group bg-card rounded-2xl border border-border p-6 sm:p-8 card-hover"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-gradient-primary group-hover:glow-sm transition-all duration-500">
-                  <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-gradient-primary group-hover:glow-sm transition-all duration-500">
+                  <feature.icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
-                <h3 className="font-display font-semibold text-xl text-foreground mb-3">
+                <h3 className="font-display font-semibold text-lg sm:text-xl text-foreground mb-2 sm:mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                   {feature.description}
                 </p>
               </div>
@@ -96,40 +96,40 @@ const MarketingSection = () => {
         </div>
 
         {/* Subscription CTA */}
-        <div className="glass-strong rounded-3xl p-8 lg:p-16 relative overflow-hidden">
+        <div className="glass-strong rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-16 relative overflow-hidden">
           {/* Background Effects */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[200px] -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/20 rounded-full blur-[200px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-accent/10 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2" />
 
-          <div className="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="relative z-10 grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Content */}
             <div>
-              <Badge className="bg-accent/20 text-accent border-0 mb-6">
+              <Badge className="bg-accent/20 text-accent border-0 mb-4 sm:mb-6">
                 Pro Membership
               </Badge>
-              <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-6">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6">
                 Unlock Unlimited Access
               </h2>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+              <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                 Get full access to our entire library of premium assets, courses, and exclusive content with a single subscription.
               </p>
 
-              <ul className="grid sm:grid-cols-2 gap-4 mb-10">
+              <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
                 {benefits.map((benefit) => (
-                  <li key={benefit} className="flex items-center gap-3 text-foreground/80">
+                  <li key={benefit} className="flex items-center gap-3 text-foreground/80 text-sm sm:text-base">
                     <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
                     <span>{benefit}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="flex flex-col sm:flex-row items-start gap-6">
-                <Button onClick={() => navigate("/auth/register")} variant="hero" size="xl" className="glow hover:scale-105 transition-transform">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                <Button onClick={() => navigate("/auth/register")} variant="hero" size="xl" className="w-full sm:w-auto glow hover:scale-105 transition-transform">
                   Start Free Trial
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
                 <div className="text-muted-foreground text-sm">
-                  Starting at <span className="text-foreground font-display font-bold text-3xl">GHS 49</span>/month
+                  Starting at <span className="text-foreground font-display font-bold text-2xl sm:text-3xl">GHS 49</span>/month
                 </div>
               </div>
             </div>
