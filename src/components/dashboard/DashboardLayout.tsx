@@ -140,7 +140,7 @@ const DashboardLayout = () => {
       </header>
 
       {/* Main Content */}
-      <main className="lg:ml-64 min-h-screen pt-16 lg:pt-0">
+      <main className="lg:ml-64 min-h-screen pt-16 lg:pt-0 pb-20 lg:pb-0">
         <Outlet />
       </main>
 
