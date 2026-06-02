@@ -90,17 +90,17 @@ const FeaturedProducts = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-card/50 relative">
+    <section className="py-16 sm:py-24 lg:py-32 bg-card/50 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[200px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[150px]" />
+      <div className="absolute top-0 right-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-primary/5 rounded-full blur-[200px]" />
+      <div className="absolute bottom-0 left-0 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-accent/5 rounded-full blur-[150px]" />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10 sm:mb-14">
           <div>
-            <span className="text-primary font-semibold mb-4 block text-sm uppercase tracking-wider">Featured</span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+            <span className="text-primary font-semibold mb-3 sm:mb-4 block text-xs sm:text-sm uppercase tracking-wider">Featured</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               Trending Products
             </h2>
           </div>
@@ -111,7 +111,7 @@ const FeaturedProducts = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {products.map((product) => (
             <div
               key={product.id}
