@@ -96,40 +96,40 @@ const MarketingSection = () => {
         </div>
 
         {/* Subscription CTA */}
-        <div className="glass-strong rounded-3xl p-8 lg:p-16 relative overflow-hidden">
+        <div className="glass-strong rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-16 relative overflow-hidden">
           {/* Background Effects */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[200px] -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/20 rounded-full blur-[200px] -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-accent/10 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2" />
 
-          <div className="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="relative z-10 grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Content */}
             <div>
-              <Badge className="bg-accent/20 text-accent border-0 mb-6">
+              <Badge className="bg-accent/20 text-accent border-0 mb-4 sm:mb-6">
                 Pro Membership
               </Badge>
-              <h2 className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-6">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-4 sm:mb-6">
                 Unlock Unlimited Access
               </h2>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+              <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                 Get full access to our entire library of premium assets, courses, and exclusive content with a single subscription.
               </p>
 
-              <ul className="grid sm:grid-cols-2 gap-4 mb-10">
+              <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
                 {benefits.map((benefit) => (
-                  <li key={benefit} className="flex items-center gap-3 text-foreground/80">
+                  <li key={benefit} className="flex items-center gap-3 text-foreground/80 text-sm sm:text-base">
                     <CheckCircle2 className="w-5 h-5 text-success flex-shrink-0" />
                     <span>{benefit}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="flex flex-col sm:flex-row items-start gap-6">
-                <Button onClick={() => navigate("/auth/register")} variant="hero" size="xl" className="glow hover:scale-105 transition-transform">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                <Button onClick={() => navigate("/auth/register")} variant="hero" size="xl" className="w-full sm:w-auto glow hover:scale-105 transition-transform">
                   Start Free Trial
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
                 <div className="text-muted-foreground text-sm">
-                  Starting at <span className="text-foreground font-display font-bold text-3xl">GHS 49</span>/month
+                  Starting at <span className="text-foreground font-display font-bold text-2xl sm:text-3xl">GHS 49</span>/month
                 </div>
               </div>
             </div>
