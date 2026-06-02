@@ -97,8 +97,8 @@ const CoursesSection = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="font-display font-semibold text-xl text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+              <div className="p-5 sm:p-6">
+                <h3 className="font-display font-semibold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 
@@ -107,7 +107,7 @@ const CoursesSection = () => {
                 </p>
 
                 {/* Stats */}
-                <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-xs sm:text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
                     <span>{course.duration}</span>
