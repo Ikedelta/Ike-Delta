@@ -34,22 +34,22 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section className="py-16 sm:py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[200px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[800px] h-[300px] sm:h-[400px] bg-primary/10 rounded-full blur-[200px]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           {/* Icon */}
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-primary mb-8 glow animate-float">
-            <Mail className="w-10 h-10 text-primary-foreground" />
+          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-primary mb-6 sm:mb-8 glow animate-float">
+            <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-primary-foreground" />
           </div>
 
           {/* Content */}
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
             Stay in the Loop
           </h2>
-          <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg mb-8 sm:mb-10 max-w-xl mx-auto">
             Get exclusive access to new releases, special offers, and creative inspiration delivered to your inbox.
           </p>
 
