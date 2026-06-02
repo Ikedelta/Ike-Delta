@@ -29,7 +29,7 @@ const HeroSection = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-foreground mb-6 sm:mb-8 leading-[1.1] animate-slide-up">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-foreground mb-5 sm:mb-8 leading-[1.15] animate-slide-up">
             Premium Digital Assets for{" "}
             <span className="text-gradient">Creative Minds</span>
           </h1>
