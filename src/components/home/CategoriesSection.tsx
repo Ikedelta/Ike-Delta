@@ -2,14 +2,14 @@ import { Palette, Image, Type, Layout, Box, Layers, FileCode, Video } from "luci
 
 const CategoriesSection = () => {
   const categories = [
-    { icon: Palette, name: "UI Kits", count: "2,340", gradient: "from-orange-500 to-red-600" },
-    { icon: Image, name: "Graphics", count: "5,120", gradient: "from-amber-500 to-orange-600" },
-    { icon: Type, name: "Fonts", count: "890", gradient: "from-yellow-500 to-orange-600" },
-    { icon: Layout, name: "Templates", count: "1,560", gradient: "from-orange-400 to-amber-600" },
-    { icon: Box, name: "3D Assets", count: "720", gradient: "from-red-500 to-orange-600" },
-    { icon: Layers, name: "Mockups", count: "1,890", gradient: "from-orange-600 to-rose-600" },
-    { icon: FileCode, name: "Code", count: "340", gradient: "from-stone-500 to-orange-600" },
-    { icon: Video, name: "Courses", count: "156", gradient: "from-red-500 to-orange-500" },
+    { icon: Palette, name: "UI Kits", count: "2,340", gradient: "from-blue-500 to-indigo-600" },
+    { icon: Image, name: "Graphics", count: "5,120", gradient: "from-pink-500 to-rose-600" },
+    { icon: Type, name: "Fonts", count: "890", gradient: "from-violet-500 to-purple-600" },
+    { icon: Layout, name: "Templates", count: "1,560", gradient: "from-cyan-500 to-blue-600" },
+    { icon: Box, name: "3D Assets", count: "720", gradient: "from-emerald-500 to-teal-600" },
+    { icon: Layers, name: "Mockups", count: "1,890", gradient: "from-fuchsia-500 to-pink-600" },
+    { icon: FileCode, name: "Code", count: "340", gradient: "from-sky-500 to-indigo-600" },
+    { icon: Video, name: "Courses", count: "156", gradient: "from-amber-500 to-orange-600" },
   ];
 
   return (
