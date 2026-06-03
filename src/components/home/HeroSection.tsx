@@ -36,7 +36,7 @@ const HeroSection = () => {
 
           {/* Subheadline */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
-            Discover thousands of high-quality templates, UI kits, graphics, and courses. 
+            Discover thousands of high-quality templates, UI kits, graphics, and mockups. 
             Create stunning designs faster than ever before.
           </p>
 
@@ -46,9 +46,9 @@ const HeroSection = () => {
               Start Exploring
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button onClick={() => navigate("/courses")} variant="glass" size="xl" className="w-full sm:w-auto hover:bg-muted/50">
+            <Button onClick={() => navigate("/categories")} variant="glass" size="xl" className="w-full sm:w-auto hover:bg-muted/50">
               <Play className="w-5 h-5 mr-2 fill-current" />
-              Watch Demo
+              Browse Categories
             </Button>
           </div>
 

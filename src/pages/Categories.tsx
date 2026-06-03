@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Palette, Image, Type, Layout, Box, Layers, FileCode, Video, Wand2, Camera, Music, FileText } from "lucide-react";
+import { Palette, Image, Type, Layout, Box, Layers, FileCode, Wand2, Camera, Music, FileText, Brush } from "lucide-react";
 
 const Categories = () => {
   const categories = [
@@ -11,7 +11,7 @@ const Categories = () => {
     { icon: Box, name: "3D Assets", count: "720", description: "3D models, icons, and renders", gradient: "from-red-500 to-orange-600" },
     { icon: Layers, name: "Mockups", count: "1,890", description: "Device and product mockups", gradient: "from-orange-600 to-rose-600" },
     { icon: FileCode, name: "Code", count: "340", description: "Code snippets and components", gradient: "from-stone-500 to-orange-600" },
-    { icon: Video, name: "Courses", count: "156", description: "Video tutorials and masterclasses", gradient: "from-red-500 to-orange-500" },
+    { icon: Brush, name: "Illustrations", count: "2,150", description: "Vector art and digital illustrations", gradient: "from-rose-500 to-orange-500" },
     { icon: Wand2, name: "Effects", count: "430", description: "Photo effects and actions", gradient: "from-orange-500 to-amber-400" },
     { icon: Camera, name: "Photos", count: "8,200", description: "Stock photos and imagery", gradient: "from-amber-600 to-orange-500" },
     { icon: Music, name: "Audio", count: "560", description: "Sound effects and music", gradient: "from-orange-500 to-yellow-500" },

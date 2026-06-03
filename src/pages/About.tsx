@@ -70,7 +70,7 @@ const About = () => {
                 </p>
                 <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
                   Founded in Ghana in 2023, CreativeHub has quickly grown to become the go-to destination for digital creators
-                  seeking professional-grade templates, UI kits, graphics, and courses.
+                  seeking professional-grade templates, UI kits, graphics, and mockups.
                 </p>
               </div>
               <div className="relative">

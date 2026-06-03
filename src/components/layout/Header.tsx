@@ -21,8 +21,8 @@ const Header = () => {
   const navLinks = [
     { name: "Explore", href: "/explore" },
     { name: "Categories", href: "/categories" },
-    { name: "Courses", href: "/courses" },
     { name: "Pricing", href: "/pricing" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const handleSignOut = async () => {
