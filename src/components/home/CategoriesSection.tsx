@@ -1,4 +1,4 @@
-import { Palette, Image, Type, Layout, Box, Layers, FileCode, Video } from "lucide-react";
+import { Palette, Image, Type, Layout, Box, Layers, FileCode, Camera } from "lucide-react";
 
 const CategoriesSection = () => {
   const categories = [
@@ -9,7 +9,7 @@ const CategoriesSection = () => {
     { icon: Box, name: "3D Assets", count: "720", gradient: "from-rose-500 to-orange-600" },
     { icon: Layers, name: "Mockups", count: "1,890", gradient: "from-cyan-600 to-teal-700" },
     { icon: FileCode, name: "Code", count: "340", gradient: "from-amber-600 to-yellow-700" },
-    { icon: Video, name: "Courses", count: "156", gradient: "from-red-500 to-rose-600" },
+    { icon: Camera, name: "Photos", count: "8,200", gradient: "from-red-500 to-rose-600" },
   ];
 
   return (

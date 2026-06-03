@@ -27,7 +27,7 @@ const TestimonialsSection = () => {
       name: "Kwame Asante",
       role: "Creative Director",
       avatar: avatarKwame,
-      content: "The courses on CreativeHub are exceptional. I've upskilled my entire team using the design masterclasses available here.",
+      content: "The asset library on CreativeHub is exceptional. My entire team relies on it for production-ready templates and mockups.",
       rating: 5,
     },
   ];

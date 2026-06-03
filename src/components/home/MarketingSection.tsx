@@ -111,7 +111,7 @@ const MarketingSection = () => {
                 Unlock Unlimited Access
               </h2>
               <p className="text-muted-foreground text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
-                Get full access to our entire library of premium assets, courses, and exclusive content with a single subscription.
+                Get full access to our entire library of premium assets, templates, and exclusive content with a single subscription.
               </p>
 
               <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
