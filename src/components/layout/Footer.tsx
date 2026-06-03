@@ -25,11 +25,11 @@ const Footer = () => {
       { name: "Fonts", href: "/explore" },
       { name: "Mockups", href: "/explore" },
     ],
-    Learn: [
-      { name: "Courses", href: "/courses" },
+    Resources: [
       { name: "Blog", href: "/blog" },
       { name: "Tutorials", href: "/blog" },
       { name: "Design Tips", href: "/blog" },
+      { name: "License Info", href: "/about" },
     ],
     Creators: [
       { name: "Become a Seller", href: "/auth/register" },
@@ -71,7 +71,7 @@ const Footer = () => {
                 Join the creative community
               </h3>
               <p className="text-muted-foreground text-sm">
-                Fresh assets, courses, and design inspiration — straight to your inbox.
+                Fresh assets, templates, and design inspiration — straight to your inbox.
               </p>
             </div>
             <form
