@@ -47,10 +47,10 @@ const CategoriesSection = () => {
               </div>
 
               {/* Content */}
-              <h3 className="font-display font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+              <h3 className="font-display font-semibold text-base sm:text-lg text-foreground mb-1 sm:mb-2 group-hover:text-primary transition-colors duration-300 truncate">
                 {category.name}
               </h3>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-xs sm:text-sm">
                 {category.count} items
               </p>
             </div>
