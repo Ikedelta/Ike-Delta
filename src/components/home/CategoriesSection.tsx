@@ -31,26 +31,26 @@ const CategoriesSection = () => {
 
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
           {categories.map((category, index) => (
             <div
               key={category.name}
-              className="group relative bg-card rounded-2xl p-6 lg:p-8 border border-border card-hover cursor-pointer overflow-hidden"
+              className="group relative bg-card rounded-2xl p-4 sm:p-6 lg:p-8 border border-border card-hover cursor-pointer overflow-hidden"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               {/* Gradient Overlay on Hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
               
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${category.gradient} flex items-center justify-center mb-5 shadow-strong group-hover:scale-110 group-hover:shadow-glow transition-all duration-500`}>
-                <category.icon className="w-7 h-7 text-white" />
+              <div className={`w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${category.gradient} flex items-center justify-center mb-4 sm:mb-5 shadow-strong group-hover:scale-110 group-hover:shadow-glow transition-all duration-500`}>
+                <category.icon className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
               </div>
 
               {/* Content */}
-              <h3 className="font-display font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+              <h3 className="font-display font-semibold text-base sm:text-lg text-foreground mb-1 sm:mb-2 group-hover:text-primary transition-colors duration-300 truncate">
                 {category.name}
               </h3>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-xs sm:text-sm">
                 {category.count} items
               </p>
             </div>

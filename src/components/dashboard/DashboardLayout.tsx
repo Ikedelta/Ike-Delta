@@ -153,12 +153,12 @@ const DashboardLayout = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`flex flex-col items-center gap-1 p-2 rounded-lg ${
+                className={`flex flex-col items-center gap-1 p-2 rounded-lg min-w-0 flex-1 ${
                   isActive ? "text-primary" : "text-muted-foreground"
                 }`}
               >
-                <item.icon className="w-5 h-5" />
-                <span className="text-xs">{item.name}</span>
+                <item.icon className="w-5 h-5 shrink-0" />
+                <span className="text-[10px] sm:text-xs truncate max-w-full">{item.name}</span>
               </Link>
             );
           })}

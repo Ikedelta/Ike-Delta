@@ -31,15 +31,15 @@ import {
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/admin", color: "from-orange-500 to-amber-500" },
-  { label: "Users", icon: Users, path: "/admin/users", color: "from-orange-400 to-red-500" },
+  { label: "Users", icon: Users, path: "/admin/users", color: "from-teal-500 to-emerald-600" },
   { label: "Products", icon: Package, path: "/admin/products", color: "from-amber-500 to-orange-600" },
-  { label: "Categories", icon: FolderOpen, path: "/admin/categories", color: "from-yellow-500 to-orange-500" },
-  { label: "Orders", icon: ShoppingCart, path: "/admin/orders", color: "from-orange-500 to-pink-500" },
-  { label: "SMS Center", icon: MessageSquare, path: "/admin/sms", color: "from-red-500 to-orange-500" },
-  { label: "Newsletters", icon: Mail, path: "/admin/newsletters", color: "from-orange-500 to-rose-500" },
-  { label: "Blog Posts", icon: FileText, path: "/admin/blog", color: "from-amber-400 to-orange-500" },
-  { label: "Analytics", icon: BarChart3, path: "/admin/analytics", color: "from-orange-600 to-red-600" },
-  { label: "Settings", icon: Settings, path: "/admin/settings", color: "from-stone-500 to-orange-500" },
+  { label: "Categories", icon: FolderOpen, path: "/admin/categories", color: "from-yellow-500 to-amber-600" },
+  { label: "Orders", icon: ShoppingCart, path: "/admin/orders", color: "from-rose-500 to-orange-500" },
+  { label: "SMS Center", icon: MessageSquare, path: "/admin/sms", color: "from-cyan-600 to-teal-700" },
+  { label: "Newsletters", icon: Mail, path: "/admin/newsletters", color: "from-amber-500 to-yellow-600" },
+  { label: "Blog Posts", icon: FileText, path: "/admin/blog", color: "from-emerald-500 to-teal-600" },
+  { label: "Analytics", icon: BarChart3, path: "/admin/analytics", color: "from-orange-600 to-rose-600" },
+  { label: "Settings", icon: Settings, path: "/admin/settings", color: "from-stone-500 to-amber-600" },
 ];
 
 const AdminLayout = () => {
