@@ -158,33 +158,33 @@ const FeaturedProducts = () => {
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-6">
-                <Badge variant="secondary" className="text-xs mb-3 bg-muted text-muted-foreground">
+              <div className="p-4 sm:p-6">
+                <Badge variant="secondary" className="text-[10px] sm:text-xs mb-2 sm:mb-3 bg-muted text-muted-foreground">
                   {product.category}
                 </Badge>
                 
-                <h3 className="font-display font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-1">
+                <h3 className="font-display font-semibold text-base sm:text-lg text-foreground mb-1 sm:mb-2 group-hover:text-primary transition-colors line-clamp-1">
                   {product.title}
                 </h3>
                 
-                <p className="text-muted-foreground text-sm mb-4">
+                <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">
                   by {product.author}
                 </p>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3 flex-wrap">
                   <div className="flex items-center gap-1.5">
-                    <Star className="w-4 h-4 fill-warning text-warning" />
-                    <span className="font-medium text-sm text-foreground">{product.rating}</span>
-                    <span className="text-muted-foreground text-sm">({product.reviews})</span>
+                    <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-warning text-warning" />
+                    <span className="font-medium text-xs sm:text-sm text-foreground">{product.rating}</span>
+                    <span className="text-muted-foreground text-xs sm:text-sm">({product.reviews})</span>
                   </div>
                   
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-baseline gap-2">
                     {product.originalPrice && (
-                      <span className="text-muted-foreground line-through text-sm">
+                      <span className="text-muted-foreground line-through text-xs sm:text-sm">
                         ${product.originalPrice}
                       </span>
                     )}
-                    <span className="font-display font-bold text-xl text-foreground">
+                    <span className="font-display font-bold text-lg sm:text-xl text-foreground">
                       {product.price === 0 ? "Free" : `$${product.price}`}
                     </span>
                   </div>
