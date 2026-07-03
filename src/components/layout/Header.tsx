@@ -36,14 +36,14 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-strong">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center glow-sm group-hover:glow transition-all duration-300">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 group min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-primary flex items-center justify-center glow-sm group-hover:glow transition-all duration-300 shrink-0">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
             </div>
-            <span className="font-display font-bold text-xl text-foreground">
+            <span className="font-display font-bold text-lg sm:text-xl text-foreground truncate">
               CreativeHub
             </span>
           </Link>
@@ -124,39 +124,40 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-foreground"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="lg:hidden -mr-2 p-2.5 text-foreground rounded-lg hover:bg-muted/60 transition-colors shrink-0"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5" />
             )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border animate-slide-down">
-            <nav className="flex flex-col gap-2">
+          <div className="lg:hidden py-3 border-t border-border animate-slide-down">
+            <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all font-medium"
+                  className="px-3 py-2.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all font-medium text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="flex flex-col gap-2 mt-4 px-4">
+              <div className="flex flex-col gap-2 mt-3 pt-3 border-t border-border/60">
                 {user ? (
                   <>
-                    <div className="px-4 py-2 text-muted-foreground text-sm">
+                    <div className="px-3 py-1 text-muted-foreground text-xs truncate">
                       Signed in as {user.email}
                     </div>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="w-full border-border"
                       onClick={() => { handleSignOut(); setIsMenuOpen(false); }}
                     >
@@ -166,15 +167,15 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="w-full border-border"
                       onClick={() => { navigate("/auth/login"); setIsMenuOpen(false); }}
                     >
                       Sign In
                     </Button>
-                    <Button 
-                      variant="hero" 
+                    <Button
+                      variant="hero"
                       className="w-full glow-sm"
                       onClick={() => { navigate("/auth/register"); setIsMenuOpen(false); }}
                     >
