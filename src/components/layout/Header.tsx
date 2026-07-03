@@ -138,26 +138,26 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border animate-slide-down">
-            <nav className="flex flex-col gap-2">
+          <div className="lg:hidden py-3 border-t border-border animate-slide-down">
+            <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all font-medium"
+                  className="px-3 py-2.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all font-medium text-sm"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="flex flex-col gap-2 mt-4 px-4">
+              <div className="flex flex-col gap-2 mt-3 pt-3 border-t border-border/60">
                 {user ? (
                   <>
-                    <div className="px-4 py-2 text-muted-foreground text-sm">
+                    <div className="px-3 py-1 text-muted-foreground text-xs truncate">
                       Signed in as {user.email}
                     </div>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="w-full border-border"
                       onClick={() => { handleSignOut(); setIsMenuOpen(false); }}
                     >
@@ -167,15 +167,15 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="w-full border-border"
                       onClick={() => { navigate("/auth/login"); setIsMenuOpen(false); }}
                     >
                       Sign In
                     </Button>
-                    <Button 
-                      variant="hero" 
+                    <Button
+                      variant="hero"
                       className="w-full glow-sm"
                       onClick={() => { navigate("/auth/register"); setIsMenuOpen(false); }}
                     >
