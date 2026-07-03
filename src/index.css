@@ -218,8 +218,10 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling + prevent horizontal overflow from decorative orbs/blurs */
 html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; max-width: 100%; }
+#root { overflow-x: clip; }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
