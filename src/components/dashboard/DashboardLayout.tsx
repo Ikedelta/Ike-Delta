@@ -25,6 +25,9 @@ const DashboardLayout = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
+  const { data: myProfile } = useMyProfile();
+  const isCreator = !!myProfile?.is_creator;
+
 
   useEffect(() => {
     if (!loading && !user) {
