@@ -19,11 +19,14 @@ const Header = () => {
   const { toast } = useToast();
 
   const navLinks = [
+    { name: "Feed", href: "/feed" },
     { name: "Explore", href: "/explore" },
+    { name: "Creators", href: "/creators" },
     { name: "Categories", href: "/categories" },
     { name: "Pricing", href: "/pricing" },
     { name: "Blog", href: "/blog" },
   ];
+
 
   const handleSignOut = async () => {
     await signOut();
