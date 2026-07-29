@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, Outlet, Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useMyProfile } from "@/hooks/useProfile";
 import {
   LayoutDashboard,
   Download,
@@ -10,17 +11,23 @@ import {
   Loader2,
   Sparkles,
   LogOut,
-  ChevronRight
+  ChevronRight,
+  Bookmark,
+  Palette
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+
 
 const DashboardLayout = () => {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
+  const { data: myProfile } = useMyProfile();
+  const isCreator = !!myProfile?.is_creator;
+
 
   useEffect(() => {
     if (!loading && !user) {
@@ -49,11 +56,16 @@ const DashboardLayout = () => {
 
   const navItems = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Boards", href: "/dashboard/boards", icon: Bookmark },
     { name: "Downloads", href: "/dashboard/downloads", icon: Download },
     { name: "Favorites", href: "/dashboard/favorites", icon: Heart },
     { name: "Notifications", href: "/dashboard/notifications", icon: Bell },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
+    ...(isCreator
+      ? [{ name: "My Designs", href: "/dashboard/products", icon: Palette }]
+      : [{ name: "Become a Creator", href: "/dashboard/become-creator", icon: Palette }]),
   ];
+
 
 
   return (

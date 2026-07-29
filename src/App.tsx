@@ -7,6 +7,10 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Explore from "./pages/Explore";
 import Categories from "./pages/Categories";
+import Feed from "./pages/Feed";
+import Creators from "./pages/Creators";
+import CreatorProfile from "./pages/CreatorProfile";
+import DesignDetail from "./pages/DesignDetail";
 
 import Pricing from "./pages/Pricing";
 import About from "./pages/About";
@@ -21,6 +25,11 @@ import Downloads from "./pages/dashboard/Downloads";
 import Favorites from "./pages/dashboard/Favorites";
 import Notifications from "./pages/dashboard/Notifications";
 import Settings from "./pages/dashboard/Settings";
+import Boards from "./pages/dashboard/Boards";
+import BecomeCreator from "./pages/dashboard/BecomeCreator";
+import MyProducts from "./pages/dashboard/MyProducts";
+import CreateProduct from "./pages/dashboard/CreateProduct";
+
 
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -33,6 +42,8 @@ import AdminNewsletters from "./pages/admin/AdminNewsletters";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminAnalytics from "./pages/admin/AdminAnalytics";
 import AdminSettings from "./pages/admin/AdminSettings";
+import AdminCreators from "./pages/admin/AdminCreators";
+
 
 const queryClient = new QueryClient();
 
@@ -47,6 +58,11 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/categories" element={<Categories />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/creators" element={<Creators />} />
+            <Route path="/creator/:handle" element={<CreatorProfile />} />
+            <Route path="/design/:slug" element={<DesignDetail />} />
+
             
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/about" element={<About />} />
@@ -60,6 +76,11 @@ const App = () => (
               <Route path="favorites" element={<Favorites />} />
               <Route path="notifications" element={<Notifications />} />
               <Route path="settings" element={<Settings />} />
+              <Route path="boards" element={<Boards />} />
+              <Route path="become-creator" element={<BecomeCreator />} />
+              <Route path="products" element={<MyProducts />} />
+              <Route path="products/new" element={<CreateProduct />} />
+
             </Route>
 
             <Route path="/admin" element={<AdminLayout />}>
@@ -73,6 +94,8 @@ const App = () => (
               <Route path="blog" element={<AdminBlog />} />
               <Route path="analytics" element={<AdminAnalytics />} />
               <Route path="settings" element={<AdminSettings />} />
+              <Route path="creators" element={<AdminCreators />} />
+
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
