@@ -113,6 +113,87 @@ export type Database = {
         }
         Relationships: []
       }
+      board_items: {
+        Row: {
+          board_id: string
+          created_at: string
+          id: string
+          note: string | null
+          product_id: string
+          user_id: string
+        }
+        Insert: {
+          board_id: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          product_id: string
+          user_id: string
+        }
+        Update: {
+          board_id?: string
+          created_at?: string
+          id?: string
+          note?: string | null
+          product_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "board_items_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "board_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      boards: {
+        Row: {
+          cover_url: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_private: boolean
+          item_count: number
+          name: string
+          slug: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_private?: boolean
+          item_count?: number
+          name: string
+          slug: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_private?: boolean
+          item_count?: number
+          name?: string
+          slug?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       categories: {
         Row: {
           created_at: string
@@ -142,6 +223,51 @@ export type Database = {
           slug?: string
         }
         Relationships: []
+      }
+      comments: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          parent_id: string | null
+          product_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          parent_id?: string | null
+          product_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          parent_id?: string | null
+          product_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "comments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comments_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       contact_messages: {
         Row: {
@@ -176,6 +302,54 @@ export type Database = {
         }
         Relationships: []
       }
+      creator_applications: {
+        Row: {
+          admin_note: string | null
+          bio: string
+          created_at: string
+          display_name: string
+          id: string
+          portfolio_url: string | null
+          reason: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          specialty: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_note?: string | null
+          bio: string
+          created_at?: string
+          display_name: string
+          id?: string
+          portfolio_url?: string | null
+          reason?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          specialty: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_note?: string | null
+          bio?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          portfolio_url?: string | null
+          reason?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          specialty?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       favorites: {
         Row: {
           created_at: string
@@ -198,6 +372,56 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "favorites_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      follows: {
+        Row: {
+          created_at: string
+          follower_id: string
+          following_id: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          follower_id: string
+          following_id: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          follower_id?: string
+          following_id?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      likes: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "likes_product_id_fkey"
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "products"
@@ -361,18 +585,22 @@ export type Database = {
           id: string
           is_featured: boolean | null
           is_free: boolean | null
+          like_count: number
           original_price: number | null
           preview_images: string[] | null
           price: number | null
           rating: number | null
           review_count: number | null
+          save_count: number
           seller_id: string
           short_description: string | null
           slug: string
           status: string | null
+          tags: string[]
           thumbnail_url: string | null
           title: string
           updated_at: string
+          view_count: number
         }
         Insert: {
           category_id?: string | null
@@ -385,18 +613,22 @@ export type Database = {
           id?: string
           is_featured?: boolean | null
           is_free?: boolean | null
+          like_count?: number
           original_price?: number | null
           preview_images?: string[] | null
           price?: number | null
           rating?: number | null
           review_count?: number | null
+          save_count?: number
           seller_id: string
           short_description?: string | null
           slug: string
           status?: string | null
+          tags?: string[]
           thumbnail_url?: string | null
           title: string
           updated_at?: string
+          view_count?: number
         }
         Update: {
           category_id?: string | null
@@ -409,18 +641,22 @@ export type Database = {
           id?: string
           is_featured?: boolean | null
           is_free?: boolean | null
+          like_count?: number
           original_price?: number | null
           preview_images?: string[] | null
           price?: number | null
           rating?: number | null
           review_count?: number | null
+          save_count?: number
           seller_id?: string
           short_description?: string | null
           slug?: string
           status?: string | null
+          tags?: string[]
           thumbnail_url?: string | null
           title?: string
           updated_at?: string
+          view_count?: number
         }
         Relationships: [
           {
@@ -435,41 +671,68 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          banner_url: string | null
+          behance: string | null
           bio: string | null
           created_at: string
+          follower_count: number
+          following_count: number
           full_name: string | null
           id: string
+          instagram: string | null
+          is_creator: boolean
           location: string | null
           phone: string | null
           role: string | null
+          specialty: string | null
+          twitter: string | null
           updated_at: string
           user_id: string
+          username: string | null
           website: string | null
         }
         Insert: {
           avatar_url?: string | null
+          banner_url?: string | null
+          behance?: string | null
           bio?: string | null
           created_at?: string
+          follower_count?: number
+          following_count?: number
           full_name?: string | null
           id?: string
+          instagram?: string | null
+          is_creator?: boolean
           location?: string | null
           phone?: string | null
           role?: string | null
+          specialty?: string | null
+          twitter?: string | null
           updated_at?: string
           user_id: string
+          username?: string | null
           website?: string | null
         }
         Update: {
           avatar_url?: string | null
+          banner_url?: string | null
+          behance?: string | null
           bio?: string | null
           created_at?: string
+          follower_count?: number
+          following_count?: number
           full_name?: string | null
           id?: string
+          instagram?: string | null
+          is_creator?: boolean
           location?: string | null
           phone?: string | null
           role?: string | null
+          specialty?: string | null
+          twitter?: string | null
           updated_at?: string
           user_id?: string
+          username?: string | null
           website?: string | null
         }
         Relationships: []
@@ -658,7 +921,7 @@ export type Database = {
       is_admin: { Args: { user_id: string }; Returns: boolean }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      app_role: "admin" | "moderator" | "user" | "creator"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -786,7 +1049,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user"],
+      app_role: ["admin", "moderator", "user", "creator"],
     },
   },
 } as const
